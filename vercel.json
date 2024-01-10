@@ -3,7 +3,7 @@
     "version": 2,
     "functions": {
       "api/**/*.js": {
-        "runtime": "@now/node"
+        "runtime": "@now/node20"
       }
     },
     "routes": [
