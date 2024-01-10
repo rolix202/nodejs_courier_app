@@ -16,7 +16,7 @@ const __dirname = dirname(__filename);
 // Middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
-app.use(express.static('public'))
+app.use(express.static(__dirname + "/public/"));
 
 // Set 'html' as the view engine
 app.engine('ejs', renderFile);
