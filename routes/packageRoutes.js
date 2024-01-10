@@ -120,7 +120,7 @@ router.post('/delete/:trackingNumber', async (req, res) => {
       }
   
       // Redirect to the package list page after deletion
-      res.redirect('/packages/list');
+      res.redirect('/packages/allpackage')
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
