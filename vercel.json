@@ -2,7 +2,10 @@
     "version": 2,
     "functions": {
       "api/**/*.js": {
-        "runtime": "@now/node"
+        "runtime": {
+          "name": "@now/node",
+          "version": "1.0.0"  
+        }
       }
     },
     "routes": [
