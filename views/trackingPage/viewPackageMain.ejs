@@ -1,0 +1,194 @@
+<div class="wrapper_hero">
+    <%- include('menu.ejs') %>
+        <div class="tracking_h1">
+            <h1>Package Details</h1>
+            <div class="dates">
+                <p class="text">Expected Delivery Date</p>
+                <p class="d_date"><%= packag.receiverDetails.expectedDeliveryDate.toDateString() %> </p>
+            </div>
+            
+        </div>
+
+</div>
+<div class="trackingWrapper pt-5">
+    <div class="container">
+        <div id="package-details">
+            <div class="row">
+                <div class="col-md-7">
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">PACKAGE DETAILS</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td class="table_width">
+                                        <p class="card-text fw-bold">Product Name: </p>
+                                    </td>
+                                    <td><span class="text-capitalize">
+                                            <%= packag.receiverDetails.productName %>
+                                        </span> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="card-text fw-bold">Product Description: </p>
+                                    </td>
+                                    <td><span class="text-capitalize">
+                                        <%= packag.receiverDetails.productDetails %>
+                                        </span> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="card-text fw-bold">Reference Number: </p>
+                                    </td>
+                                    <td><span class="text-capitalize">
+                                            <%= packag.receiverDetails.referenceNumber %>
+                                        </span> 
+                                    </td>
+                                </tr>
+                               
+                            </table>
+                        </div>
+                    </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">SENDER DETAILS</h5>
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td class="w-25">
+                                            <p class="card-text fw-bold">First Name: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.senderDetails.firstName %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Last Name: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.senderDetails.lastName %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Email: </p>
+                                        </td>
+                                        <td><span>
+                                                <%= packag.senderDetails.email %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Phone Number: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.senderDetails.phoneNumber %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Address: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.senderDetails.address %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">RECEIVER DETAILS</h5>
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td class="table_width">
+                                            <p class="card-text fw-bold">First Name: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.receiverDetails.firstName %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Last Name: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.receiverDetails.lastName %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Email: </p>
+                                        </td>
+                                        <td><span>
+                                                <%= packag.receiverDetails.email %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Phone Number: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.receiverDetails.phoneNumber %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text fw-bold">Destination Address: </p>
+                                        </td>
+                                        <td><span class="text-capitalize">
+                                                <%= packag.receiverDetails.destinationAddress %>
+                                            </span> 
+                                        </td>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <h2>Transit History</h2>
+                        <ul class="transit-history-list">
+                            
+                            <% packag.transitHistory.forEach(history=> { %>
+                                <li class="transit-history-item">
+                                    <div class="status">
+                                        <span class="status-label">Status:</span>
+                                        <span class="status-value">
+                                            <%= history.status %>
+                                        </span>
+                                    </div>
+                                    <div class="date">
+                                        <span class="date-label">Date:</span>
+                                        <span class="date-value">
+                                            <%= history.date.toLocaleDateString() %>
+                                        </span>
+                                    </div>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

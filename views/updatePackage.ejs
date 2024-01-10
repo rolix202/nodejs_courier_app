@@ -1,0 +1,31 @@
+<!-- views/updatePackage.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Transit Information</title>
+</head>
+<body>
+  <h1>Update Transit Information</h1>
+  <form action="/packages/update/<%= trackingNumber %>" method="POST">
+    <label for="transitStatus">Update Transit Status:</label>
+    <select id="transitStatus" name="transitInfo[status]">
+      <option value="Accepted">Accepted</option>
+      <option value="Processing">Processing</option>
+      <option value="Out for Delivery">Out for Delivery</option>
+      <option value="In Transit">In Transit</option>
+      <option value="Delay">Delay</option>
+      <option value="Change of Route">Change of Route</option>
+      <option value="On Hold">On Hold</option>
+      <option value="Released">Released</option>
+      <option value="Package Delivered">Package Delivered</option>
+    </select>
+    <button type="submit">Update Transit Status</button>
+  </form>
+
+  <!-- Add a back button to return to the view page -->
+  <a href="/packages/details/<%= trackingNumber %>">Go back to package details</a>
+</body>
+</html>

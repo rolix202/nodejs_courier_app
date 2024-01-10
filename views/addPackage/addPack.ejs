@@ -1,0 +1,252 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+                aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">BorderCross Logistics</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                    <ul class="nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="dashboard">
+                            <i class="fa-solid fa-house-chimney-window"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="add">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Add Package
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2" href="allpackage">
+                            <i class="fa-solid fa-user"></i>
+                            All Package
+                        </a>
+                    </li>
+                       
+                    </ul>
+
+                    <hr class="my-3">
+
+                    <ul class="nav flex-column mb-auto">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <svg class="bi">
+                                    <use xlink:href="#door-closed" />
+                                </svg>
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Add New Package</h1>
+            </div>
+                  
+
+              <form action="/packages/add" class="row g-3 mb-4" method="POST" id="courier_form_id">
+
+                <h4>Sender Details</h4>
+
+                <div class="col-md-3">
+                  <label for="senderFirstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="senderFirstName" name="senderDetails[firstName]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="senderLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="senderLastName" name="senderDetails[lastName]" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="senderEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="senderEmail" name="senderDetails[email]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="senderPhoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="senderPhoneNumber" name="senderDetails[phoneNumber]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="senderCountry" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="senderCountry" name="senderDetails[country]" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="senderAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="senderAddress" name="senderDetails[address]" required>
+                </div>
+
+                <h4>Receiver Details</h4>
+
+                <div class="col-md-3">
+                  <label for="receiverFirstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="receiverFirstName" name="receiverDetails[firstName]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="receiverLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="receiverLastName" name="receiverDetails[lastName]" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="receiverEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="receiverEmail" name="receiverDetails[email]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="receiverPhoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="receiverPhoneNumber" name="receiverDetails[phoneNumber]" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="receiverCountry" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="receiverCountry" name="receiverDetails[country]" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="receiverDestinationAddress" class="form-label">Destination Address</label>
+                    <input type="text" class="form-control" id="receiverDestinationAddress" name="receiverDetails[destinationAddress]" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="receiverDetails[productName]" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="expectedDeliveryDate" class="form-label">Expected Delivery Date</label>
+                  <input type="date" class="form-control" id="expectedDeliveryDate" name="receiverDetails[expectedDeliveryDate]" required>
+              </div>
+
+                <div class="col-md-6">
+                    <label for="productDetails" class="form-label">Product Details</label>
+                    <textarea class="form-control" id="productDetails" name="receiverDetails[productDetails]" rows="3"></textarea>
+                  </div>
+
+                <h4>Transit Details</h4>
+
+                <div class="col-md-4">
+                    <label for="transitStatus" class="form-label">Transit Status:</label>
+
+                    <select id="transitStatus" class="form-select" name="transitInfo[status]">
+                        <option value="Accepted">Accepted</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Out for Delivery">Out for Delivery</option>
+                        <option value="In Transit">In Transit</option>
+                        <option value="Delay">Delay</option>
+                        <option value="Change of Route">Change of Route</option>
+                        <option value="On Hold">On Hold</option>
+                        <option value="Released">Released</option>
+                        <option value="Package Delivered">Package Delivered</option>
+                    </select>
+                  </div> 
+              
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Create Package</button>
+                </div>
+              </form>
+
+
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Function to show SweetAlert with a success message
+    function showSuccessAlert() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Package Created Successfully',
+      showConfirmButton: false,
+      timer: 1500, // Automatically close after 1.5 seconds
+    }).then(() => {
+      // Reset the form after the alert is closed
+      document.getElementById('courier_form_id').reset();
+    });
+  }
+  
+    // Function to show SweetAlert with an error message
+    function showErrorAlert() {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to create the package',
+      });
+    }
+  
+    // Example: Trigger SweetAlert on form submission success
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('courier_form_id'); // Replace with your actual form ID
+  
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+  
+        // Perform form submission using AJAX or fetch
+        // On successful submission, call showSuccessAlert();
+        // On submission error, call showErrorAlert();
+        
+        // Construct the data object
+      const formData = {
+        receiverDetails: {
+          firstName: document.getElementById('receiverFirstName').value,
+          lastName: document.getElementById('receiverLastName').value,
+          email: document.getElementById('receiverEmail').value,
+          phoneNumber: document.getElementById('receiverPhoneNumber').value,
+          country: document.getElementById('receiverCountry').value,
+          destinationAddress: document.getElementById('receiverDestinationAddress').value,
+          productName: document.getElementById('productName').value,
+          productDetails: document.getElementById('productDetails').value,
+          expectedDeliveryDate: document.getElementById('expectedDeliveryDate').value,
+        },
+        senderDetails: {
+          firstName: document.getElementById('senderFirstName').value,
+          lastName: document.getElementById('senderLastName').value,
+          email: document.getElementById('senderEmail').value,
+          phoneNumber: document.getElementById('senderPhoneNumber').value,
+          country: document.getElementById('senderCountry').value,
+          address: document.getElementById('senderAddress').value,
+        },
+        transitInfo: {
+          status: document.getElementById('transitStatus').value,
+        },
+      };
+
+      // Perform form submission using fetch
+      fetch('/packages/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+        .then(response => {
+          if (response.ok) {
+            showSuccessAlert();
+          } else {
+            showErrorAlert();
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showErrorAlert();
+        });
+
+      });
+    });
+  </script>

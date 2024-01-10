@@ -1,0 +1,32 @@
+<!-- views/packageList.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Package List</title>
+</head>
+<body>
+  <h1>Package List</h1>
+  <ul>
+    <% packages.forEach(package => { %>
+      <li>
+        Tracking Number: <%= package.trackingNumber %>
+        Receiver: <%= package.receiverDetails.firstName %> <%= package.receiverDetails.lastName %>
+        Country: <%= package.receiverDetails.country %>
+        Destination Address: <%= package.receiverDetails.destinationAddress %>
+        Product Name: <%= package.receiverDetails.productName %>
+
+        <a href="/packages/details/<%= package.trackingNumber %>">View Details</a>
+        <a href="/packages/update/<%= package.trackingNumber %>">Update Status</a>
+        
+        <!-- Add a delete button within the form -->
+        <form action="/packages/delete/<%= package.trackingNumber %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

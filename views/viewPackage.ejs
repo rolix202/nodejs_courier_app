@@ -1,0 +1,31 @@
+<!-- views/viewPackage.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Package Details</title>
+</head>
+<body>
+  <h1>Package Details</h1>
+  <div id="package-details">
+   
+    <h2>Transit History</h2>
+    <ul>
+      <% packag.transitHistory.forEach(history => { %>
+        <li>
+          Status: <%= history.status %>,
+          Date: <%= history.date.toLocaleDateString() %>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <!-- Add a back button to return to the homepage -->
+  <a href="/">Go back to homepage</a>
+  
+  <!-- Add a link to update transit information -->
+  <a href="/packages/update/<%= trackingNumber %>">Update Transit Information</a>
+</body>
+</html>
