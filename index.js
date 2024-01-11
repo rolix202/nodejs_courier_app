@@ -29,6 +29,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', (req, res) => {
     res.render('homepage/index.ejs')
   });
+app.get('/contact-us', (req, res) => {
+    res.render('contact/contactH.ejs')
+})
 
 app.use('/packages', packageRoutes);
 
