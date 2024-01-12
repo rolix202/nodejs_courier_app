@@ -35,10 +35,13 @@ const packageSchema = new mongoose.Schema({
         status: { type: String, enum: ['Accepted', 'Processing', 'Out for Delivery', 'In Transit', 'Delay', 'Change of Route', 'On Hold', 'Released', 'Package Delivered'], default: 'Accepted' }
     },
 
-    transitHistory: [{
-        status: { type: String, default: 'Accepted' },
-        date: { type: Date, default: Date.now }
-      }]
+      transitHistory: [{
+        status: { type: String, required: true },
+        date: { type: Date, default: Date.now },
+        comment: { type: String },
+        location: { type: String }
+    }],
+    
 
       
 });
@@ -46,7 +49,7 @@ const packageSchema = new mongoose.Schema({
 // Middleware to generate a unique reference number before saving for the receiver
 packageSchema.pre('save', function (next) {
     if (!this.receiverDetails.referenceNumber) {
-        this.receiverDetails.referenceNumber = 'borderCross' + shortid.generate();
+        this.receiverDetails.referenceNumber = 'borderCross' + this.receiverDetails.firstName;
     }
     next();
 });

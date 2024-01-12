@@ -26,7 +26,11 @@ router.post('/add', async (req, res) => {
       receiverDetails,
       senderDetails,
       transitInfo,
-      transitHistory,
+      transitHistory: [{
+        status: 'Accepted',
+        comment: 'Package accepted for processing',
+        location: 'Initial location' // Update with actual initial location
+    }],
     });
 
     // Save the package to the database
@@ -62,34 +66,52 @@ router.get('/detail', async (req, res) => {
 });
   
   
-  // Route to update transit information by tracking number
-  router.post('/update/:trackingNumber', async (req, res) => {
-    try {
-      const { trackingNumber } = req.params;
-      const { transitInfo } = req.body;
-  
-      // Find and update the package by tracking number
-      const updatedPackage = await Package.findOneAndUpdate(
-        { trackingNumber },
-        {
-          $set: { 'transitInfo.status': transitInfo.status },
-          $push: { transitHistory: { status: transitInfo.status } }
-        },
-        { new: true } // Return the updated document
-      );
-  
-      if (!updatedPackage) {
-        return res.status(404).json({ error: 'Package not found' });
-      }
-  
-      // Redirect to the view page after updating transit information
-      // res.redirect(`/packages/details/${trackingNumber}`);
-      res.redirect('/packages/allpackage')
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+
+// Assuming you have already imported necessary modules and models
+
+// Route to update transit information by tracking number
+// Route to update transit information by tracking number
+router.post('/update/:trackingNumber', async (req, res) => {
+  try {
+    const { trackingNumber } = req.params;
+    const { transitInfo, comment, location } = req.body;
+
+    // Find the package by tracking number
+    const packageToUpdate = await Package.findOne({ trackingNumber });
+
+    if (!packageToUpdate) {
+      return res.status(404).json({ error: 'Package not found' });
     }
-  });
+
+    // Update transit information
+    packageToUpdate.transitInfo.status = transitInfo.status;
+
+    // Add a new entry to the transit history array
+    packageToUpdate.transitHistory.push({
+      status: transitInfo.status,
+      comment,
+      location,
+      date: new Date(),
+    });
+
+    // Update receiver details if needed
+    if (req.body.receiverDetails && req.body.receiverDetails.country) {
+      packageToUpdate.receiverDetails.country = req.body.receiverDetails.country;
+    }
+
+    // Save the updated package
+    await packageToUpdate.save();
+
+    // Redirect to the view page after updating transit information
+    res.redirect('/packages/allpackage');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
 
   // Route to render the updatePackage.ejs template for GET requests
 router.get('/update/:trackingNumber', (req, res) => {

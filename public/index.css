@@ -168,13 +168,13 @@
     color: #007bff; /* Blue color, you can choose your preferred color */
 }
 
-.date {
+.date, .comment, .location {
     margin-top: 5px;
     color: #6c757d; /* Gray color for date */
 }
 
 .status-label,
-.date-label {
+.date-label, .comment-label, .location-label {
     font-weight: bold;
 }
 

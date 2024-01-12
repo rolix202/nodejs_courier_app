@@ -162,25 +162,32 @@
 
                     <div class="col-md-5">
                         <h2>Transit History</h2>
+                       
+
                         <ul class="transit-history-list">
-                            
-                            <% packag.transitHistory.forEach(history=> { %>
+                            <% packag.transitHistory.forEach(history => { %>
                                 <li class="transit-history-item">
                                     <div class="status">
                                         <span class="status-label">Status:</span>
-                                        <span class="status-value">
-                                            <%= history.status %>
-                                        </span>
+                                        <span class="status-value"><%= history.status %></span>
                                     </div>
                                     <div class="date">
                                         <span class="date-label">Date:</span>
-                                        <span class="date-value">
-                                            <%= history.date.toLocaleDateString() %>
-                                        </span>
+                                        <span class="date-value"><%= history.date.toUTCString() %></span>
                                     </div>
+                                    <div class="comment">
+                                        <span class="comment-label">Message:</span>
+                                        <span class="comment-value"><%= history.comment %></span>
+                                    </div>
+                                    <div class="location">
+                                        <span class="location-label">Location:</span>
+                                        <span class="location-value"><%= history.location %></span>
+                                    </div>
+                                    
                                 </li>
-                                <% }) %>
+                            <% }) %>
                         </ul>
+                        
                     </div>
                 </div>
 
@@ -192,7 +199,7 @@
 
     </div>
 </div>
-<div class="footer">
+<div class="footer mt-5">
     <div class="row p-5">
         <div class="col-md-4 d-flex align-items-center px-5">
             <img src="/images/log.png" alt="logo" width="250px" height="auto">
