@@ -36,7 +36,7 @@ const packageSchema = new mongoose.Schema({
     },
 
     transitHistory: [{
-        status: { type: String, required: true },
+        status: { type: String, default: 'Accepted' },
         date: { type: Date, default: Date.now }
       }]
 

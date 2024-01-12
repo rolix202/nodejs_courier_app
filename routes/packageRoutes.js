@@ -26,6 +26,7 @@ router.post('/add', async (req, res) => {
       receiverDetails,
       senderDetails,
       transitInfo,
+      transitHistory,
     });
 
     // Save the package to the database
