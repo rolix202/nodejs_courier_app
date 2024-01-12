@@ -261,6 +261,7 @@
 }
 .contacts_info span{
     display: block;
+    padding-block: 10px;
 }
 .conatact_form_wrapper{
     padding-top: 60px;
