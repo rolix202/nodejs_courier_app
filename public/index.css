@@ -206,11 +206,11 @@
 }
 
 /* contact section */
-.contact_header{
+/* .contact_header{
     height: 90vh;
     width: 100%;
     background-color: black;
-}
+} */
 .contact_header{
     background-image: url('/images/banner.jpg');
     background-repeat: no-repeat;
@@ -307,5 +307,20 @@
     .footer_last{
         margin-top: 50px;
         justify-content: flex-start !important;
+    }
+    .header_hr{
+        width: 30%;  
+    }
+    .header_text_icons{
+       
+        font-size: 20px;
+        width: 100%;
+        top: 70%;
+    }
+    .contact_detai{
+        padding-top: 70px;
+    }
+    .submit_btn{
+        width: 100%;
     }
 }
