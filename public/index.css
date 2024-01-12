@@ -7,6 +7,9 @@
     padding: 0;
     margin: 0;
 }
+.wrapper{
+    width: 100%;
+}
 .header_container{
     background-image: url('/images/banner.jpg');
     background-repeat: no-repeat;
