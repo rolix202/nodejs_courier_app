@@ -11,14 +11,14 @@
     width: 100%;
 }
 .header_container{
-    background-image: url('/images/banner.jpg');
+    /* background-image: url('/images/banner.jpg');
     background-repeat: no-repeat;
     position: relative;
     width: 100%; 
-    overflow: hidden;
-    height: 95vh;
+    overflow: hidden; */
+    background-color: black;
 }
-.header_container::before {
+/* .header_container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -26,7 +26,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-}
+} */
 .menu_big_screen{
     top: 20px;
     border-radius: 7px;
@@ -37,13 +37,16 @@
     box-shadow: none !important;
 }
 .nav_links{
-    font-weight: 500;
+    font-weight: 700;
+}
+.nav_links a{
+    color: white;
 }
 .icons{
     margin-right: 20px;
 }
 .icons i{
-    color: rgb(24, 23, 23);
+    color: orange;
 }
 .nav_ull{
     padding-right: 30px;
@@ -53,15 +56,15 @@
     color: white;
     width: 75%;
     margin: 0 auto;
-    top: 55%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Montserrat', sans-serif;
 }
 .hero_text .first_h1{
-    font-size: 32px;
-    background-color: white;
-    color: black;
+    font-size: 28px;
+    color: orange;
+    font-weight: 700;
     display: inline-block;
     padding-inline: 8px;
     padding-block: 6px;
@@ -275,6 +278,8 @@
     box-shadow: none;
 }
 
+
+
 @media (max-width: 576px) {
     .hero_text .first_h1{
         font-size: 25px;
@@ -327,4 +332,34 @@
     .submit_btn{
         width: 100%;
     }
+   
+}
+.swiper {
+    width: 100%;
+    height: 95vh;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-slide {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
