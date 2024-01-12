@@ -69,6 +69,10 @@
 .track_info{
     margin-block: 100px;
 }
+.about_img{
+    width: 556px;
+    height: auto;
+}
 
 .main_info{
     font-family: 'Raleway', sans-serif;
@@ -261,4 +265,47 @@
 .conatact_form_wrapper{
     padding-top: 60px;
     margin-bottom: 40px;
+}
+.navbar-brand{
+    background-color: transparent !important;
+    box-shadow: none;
+}
+
+@media (max-width: 576px) {
+    .hero_text .first_h1{
+        font-size: 25px;
+        text-align: left;
+    }
+    .hero_text .second_h1{
+        font-size: 30px;
+        text-align: left;
+        margin-top: 20px;
+    }
+    .track_info{
+        margin-block: 50px;
+    }
+    .about_img{
+        width: 350px;
+        height: auto;
+    }
+    .main_info{
+        text-align: center;
+        margin-top: 50px;
+        padding-left: 0;
+    }
+    .main_info h2{
+        font-size: 30px;
+    }
+    .partners{
+        display: flex;
+        justify-content: center !important;
+        padding-bottom: 50px;
+    }
+    .footer_middle{
+        margin-top: 50px;
+    }
+    .footer_last{
+        margin-top: 50px;
+        justify-content: flex-start !important;
+    }
 }
