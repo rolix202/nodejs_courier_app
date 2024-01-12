@@ -273,6 +273,11 @@
     padding-top: 60px;
     margin-bottom: 40px;
 }
+.form_wrapp{
+    background-image: url('/images/water.jpg');
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+}
 .navbar-brand{
     background-color: transparent !important;
     box-shadow: none;
@@ -362,4 +367,11 @@
     justify-content: center;
     text-align: center;
     color: white;
+}
+
+.trackingWrapper{
+    background-image: url('/images/water.jpg');
+    padding-block: 80px;
+   
+    background-repeat: no-repeat;
 }
