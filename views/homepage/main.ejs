@@ -1,68 +1,68 @@
 <div class="wrapper">
     <div class="header_container">
-           <%- include('menu.ejs') %>
-        
+        <%- include('menu.ejs') %>
+
     </div>
 
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="/images/banner.jpg" alt="">
-            <div class="overlay">
-                <div class="hero_text text-center">
-                    <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
-                    <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
-                    <a class="btn btn-primary" href="/contact-us">Learn More</a>
+            <div class="swiper-slide"><img src="/images/banner.jpg" alt="">
+                <div class="overlay">
+                    <div class="hero_text text-center">
+                        <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
+                        <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
+                        <a class="btn btn-primary" href="/contact-us">Learn More</a>
+                    </div>
+
                 </div>
-                
             </div>
-        </div>
-          <div class="swiper-slide"><img src="/images/air.jpg" alt="">
-            <div class="overlay">
-                <div class="hero_text text-center">
-                    <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
-                    <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
-                    <a class="btn btn-primary" href="/contact-us">Learn More</a>
+            <div class="swiper-slide"><img src="/images/air.jpg" alt="">
+                <div class="overlay">
+                    <div class="hero_text text-center">
+                        <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
+                        <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
+                        <a class="btn btn-primary" href="/contact-us">Learn More</a>
+                    </div>
+
                 </div>
-                
             </div>
-        </div>
-          <div class="swiper-slide"><img src="/images/bernd.jpg" alt=""> 
-            <div class="overlay">
-                <div class="hero_text text-center">
-                    <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
-                    <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
-                    <a class="btn btn-primary" href="/contact-us">Learn More</a>
+            <div class="swiper-slide"><img src="/images/bernd.jpg" alt="">
+                <div class="overlay">
+                    <div class="hero_text text-center">
+                        <h1 class="first_h1 text-uppercase">Cross Border Logistics Inc</h1>
+                        <h1 class="second_h1">DEDICATED SHIPPING AND LOGISTICS</h1>
+                        <a class="btn btn-primary" href="/contact-us">Learn More</a>
+                    </div>
+
                 </div>
-               
             </div>
-        </div>
         </div>
         <div class="swiper-pagination"></div>
-      </div>
+    </div>
 
 
 
 
 
 
-      
+
 
     <div class="body_wrapper">
         <div class="track_container container">
-            <div class="track_info w-75 mx-auto">
+            <div class="track_info">
                 <div class="p-3 text-bg-dark rounded-3 ">
                     <form action="/packages/detail" method="GET" class="w-100 mx-auto">
-                       
+
                         <div class="row g-3">
                             <div class="col-md-8">
                                 <label for="trackingNumber" class="form-label">Tracking Number:</label>
                                 <input type="text" class="form-control" id="trackingNumber" name="trackingNumber"
                                     required>
-    
+
                             </div>
-    
+
                             <div class="col-md-4 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary px-5">Track You Order</button>
+                                <button type="submit" class="btn btn-primary px-5 track_btn">Track You Order</button>
                             </div>
                         </div>
 
@@ -71,62 +71,74 @@
             </div>
         </div>
 
-        <div class="about_container container mb-5">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="/images/side-1.png" alt="border cross image" class="about_img">
-                </div>
-                <div class="col-md-7">
-                    <div class="main_info">
-                        <div class="main_info_h">
-                            <h4>Welcome To</h4>
-                            <h2>Cross Border Logistics Inc</h2>
-                        </div>
-                        <h4>Cross Border Logistics is a dedicated shipping and logistics company based in Dar Es Salaam, Tanzania. Our diversified services include International Vehicle Shipping, Air Shipping, Sea Shipping, Import Freight Forwarding, Customs Clearance and Transport, Local, National and Overborder.</h4><br />
-                        <h4> Our focus through our Network of International and National Agents is to provide complete, efficient, affordable logistical service on Import Cargo.</h4>
-
-                        
+        <div class="about_wrap">
+            <div class="about_container container my-5">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="/images/side-1.png" alt="border cross image" class="about_img">
                     </div>
-                    
+                    <div class="col-md-7">
+                        <div class="main_info">
+                            <div class="main_info_h">
+                                <h4>Welcome To</h4>
+                                <h2>Cross Border Logistics Inc</h2>
+                            </div>
+                            <h4>Cross Border Logistics is a dedicated shipping and logistics company based in Dar Es Salaam,
+                                Tanzania. Our diversified services include International Vehicle Shipping, Air Shipping, Sea
+                                Shipping, Import Freight Forwarding, Customs Clearance and Transport, Local, National and
+                                Overborder.</h4><br />
+                            <h4> Our focus through our Network of International and National Agents is to provide complete,
+                                efficient, affordable logistical service on Import Cargo.</h4>
+    
+    
+                        </div>
+    
+                    </div>
                 </div>
             </div>
         </div>
+    
     </div>
 
-    <div class="shipping_image my-5">
+    <div class="shipping_image">
         <img src="/images/Crossborder_home.jpg" alt="crossborder logistics" width="100%" height="auto">
     </div>
 
     <div class="shipping_routes container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-              <div class="card">
-                <img src="/images/Ocean-Freight.jpg" class="card-img-top" alt="Ocean Freight">
-                <div class="card-body">
-                  <h5 class="card-title">Ocean Freight Services</h5>
-                  <p class="card-text">Crossborder Logistics offers Ocean freight services globally. Whether exporting or importing from or to the UK/EU our team of experts are ready to assist.</p>
+                <div class="card">
+                    <img src="/images/Ocean-Freight.jpg" class="card-img-top" alt="Ocean Freight">
+                    <div class="card-body">
+                        <h5 class="card-title">Ocean Freight Services</h5>
+                        <p class="card-text">Crossborder Logistics offers Ocean freight services globally. Whether
+                            exporting or importing from or to the UK/EU our team of experts are ready to assist.</p>
+                    </div>
                 </div>
-              </div>
             </div>
             <div class="col">
-              <div class="card">
-                <img src="/images/Air-and-Courier-Freight.jpg" class="card-img-top" alt="Air and Courier Freight">
-                <div class="card-body">
-                  <h5 class="card-title">Air Freight & Courier Services</h5>
-                  <p class="card-text">Crossborder Logistics offers global airfreight & courier services to and from the UK/EU. These services are ideal for urgent and smaller shipments, with regular departures, as well as direct and indirect flight options.</p>
+                <div class="card">
+                    <img src="/images/Air-and-Courier-Freight.jpg" class="card-img-top" alt="Air and Courier Freight">
+                    <div class="card-body">
+                        <h5 class="card-title">Air Freight & Courier Services</h5>
+                        <p class="card-text">Crossborder Logistics offers global airfreight & courier services to and
+                            from the UK/EU. These services are ideal for urgent and smaller shipments, with regular
+                            departures, as well as direct and indirect flight options.</p>
+                    </div>
                 </div>
-              </div>
             </div>
             <div class="col">
-              <div class="card">
-                <img src="/images/Road-Freight.jpg" class="card-img-top" alt="Road Freight">
-                <div class="card-body">
-                  <h5 class="card-title">Road Freight Services</h5>
-                  <p class="card-text">Whether you are looking for a UK/EU cross-border solution for your goods, or simply to move goods domestically in the UK or EU, Crossborder Logistics can deliver for you.</p>
+                <div class="card">
+                    <img src="/images/Road-Freight.jpg" class="card-img-top" alt="Road Freight">
+                    <div class="card-body">
+                        <h5 class="card-title">Road Freight Services</h5>
+                        <p class="card-text">Whether you are looking for a UK/EU cross-border solution for your goods,
+                            or simply to move goods domestically in the UK or EU, Crossborder Logistics can deliver for
+                            you.</p>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
 
     <div class="footer">
@@ -138,7 +150,8 @@
                 <div class="contact_footer text-white">
                     <h1 class="text-uppercase">Contact Us</h1>
                     <h4 class="text-capitalize">Have a question? give us a call. We'd love to hear from you.</h4>
-                    <span><i class="fa-solid fa-address-book pe-"></i> Bağlar, Mimar Sinan Cd No:46, 34209 Bağcılar/İstanbul, Türkiye 🇹🇷</span>
+                    <span><i class="fa-solid fa-address-book pe-"></i> Bağlar, Mimar Sinan Cd No:46, 34209
+                        Bağcılar/İstanbul, Türkiye 🇹🇷</span>
                     <span><i class="fa-solid fa-envelope pe-1"></i> info@crossborderinc.com </span>
                 </div>
             </div>
@@ -153,6 +166,6 @@
         </div>
     </div>
     <div class="copyright text-white text-center">
-        <p>All rights reserved. copyright &copy; 1954. Cross Border Logistics Inc</p>
+        <p>All rights reserved. copyright &copy; 1999. Cross Border Logistics Inc</p>
     </div>
 </div>

@@ -74,6 +74,8 @@
 }
 .track_info{
     margin-block: 100px;
+    width: 75%;
+    margin: 0 auto;
 }
 .about_img{
     width: 556px;
@@ -89,6 +91,7 @@
 .shipping_routes{
     margin-block: 110px;
 }
+
 
 .footer{
     background-image: url('/images/footer.jpg');
@@ -278,6 +281,12 @@
     background-repeat: no-repeat;
     padding-bottom: 20px;
 }
+.about_wrap{
+    background-image: url('/images/water.jpg');
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
 .navbar-brand{
     background-color: transparent !important;
     box-shadow: none;
@@ -289,10 +298,21 @@
     .hero_text .first_h1{
         font-size: 25px;
         text-align: left;
+        padding-inline: 0px;
     }
     .hero_text .second_h1{
         font-size: 30px;
         text-align: left;
+        margin-top: 20px;
+    }
+    .track_info{
+        width: 100%;
+    }
+    .track_btn{
+        width: 100%;
+    }
+    .hero_text a{
+        width: 100%;
         margin-top: 20px;
     }
     .track_info{
@@ -337,7 +357,7 @@
     .submit_btn{
         width: 100%;
     }
-   
+    
 }
 .swiper {
     width: 100%;
