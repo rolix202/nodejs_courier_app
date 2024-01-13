@@ -41,8 +41,6 @@ const packageSchema = new mongoose.Schema({
         comment: { type: String },
         location: { type: String }
     }],
-    
-
       
 });
 
