@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import packageRoutes from './routes/packageRoutes.js'
 import authRoute from './routes/authRoute.js'
+import messageRoute from './routes/messageRoute.js'
 const app = express()
 import * as dotenv from "dotenv"
 dotenv.config();
@@ -45,7 +46,7 @@ app.get('/contact-us', (req, res) => {
     res.render('contact/contactH.ejs')
 })
 app.use('/packages', packageRoutes);
-
+app.use('/', messageRoute);
 app.use('/', authRoute)
 
 const port = process.env.PORT || 5000;

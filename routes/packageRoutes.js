@@ -5,6 +5,8 @@ const router = Router()
 import Package from '../models/package.js'
 import { isAuthenticated } from '../middleware/authenticationMiddleware.js';
 
+// sRprhYYMkCVZ
+
 // Basic routes
 router.get('/dashboard', isAuthenticated, (req, res) => {
   res.render('dashboard/dashboard')

@@ -2,9 +2,18 @@
     <div class="row align-items-center g-lg-5 py-5">
       <div class="col-md-10 mx-auto col-lg-5">
         <form action="/login" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+
+          <% if (msg) { %>
+            <div class="alert alert-danger animate__animated animate__shakeX text-center" role="alert">
+                <%= msg %>
+            </div>
+        <% } %>
+          
+
+         
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="username" name="username" required>
-            <label for="username">User Name</label>
+            <label for="username">User Name</label> 
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password" name= "password" required>

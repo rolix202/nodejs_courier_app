@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 const router = Router();
 
 router.get('/login', (req, res) => {
-    res.render('loginPage/loginH')
+    res.render('loginPage/loginH', { msg: '' });
   })
 
   router.post('/login', async (req, res) => {
@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
         const admin = await Admin.findOne({ username: username });
 
         if (!admin) {
-            return res.status(401).json({ msg: 'Invalid username or password' });
+            return res.render('loginPage/loginH', { msg: 'Invalid username or password' });
         }
 
         const verifyPass = await bcrypt.compare(password, admin.password);
@@ -24,7 +24,8 @@ router.get('/login', (req, res) => {
             req.session.admin = admin; // Set the session variable
             res.redirect('/packages/dashboard');
         } else {
-            return res.status(401).json({ msg: 'Invalid username or password' });
+            return res.render('loginPage/loginH', { msg: 'Invalid username or password' });
+            
         }
     } catch (error) {
         console.error(error);
