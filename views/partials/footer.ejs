@@ -1,5 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(){
@@ -16,16 +17,36 @@
   })
 </script>
 
+
+
+
 <script>
-  function showPreloader() {
-      // Show the preloader
-      document.getElementById('preloaderContainer').style.display = 'flex';
-      // Submit the form after a short delay (simulating form submission)
-      setTimeout(function () {
-          document.getElementById('trackingForm').submit();
-      }, 1000);
+  function submitForm(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Show SweetAlert indicating form submission
+      Swal.fire({
+          title: 'Getting Tracking Details ...',
+          text: 'Please wait...',
+          icon: 'info',
+          allowOutsideClick: false,
+          showConfirmButton: false,
+      });
+
+      // Simulate form submission (you can replace this with actual AJAX form submission)
+      setTimeout(() => {
+          // Close the SweetAlert
+          Swal.close();
+
+          // Submit the form
+          event.target.submit();
+      }, 2000); // Simulating a 2-second delay, replace with actual submission logic
   }
 </script>
+
+
+
+
 
 <script>
   window.onscroll = function() {scrollFunction()};

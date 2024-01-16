@@ -55,7 +55,7 @@
         <div class="track_container container">
             <div class="track_info">
                 <div class="p-3 text-bg-dark rounded-3 ">
-                    <form action="/packages/detail" method="GET" class="w-100 mx-auto">
+                    <form action="/packages/detail" method="GET" class="w-100 mx-auto" onsubmit="submitForm(event)">
 
                         <div class="row g-3">
                             <div class="col-md-8">
@@ -76,9 +76,7 @@
         </div>
 
 
-        <div class="preloader-container" id="preloaderContainer">
-            <div class="preloader"></div>
-        </div>
+
 
         <div class="about_wrap">
             <div class="about_container container my-5">
