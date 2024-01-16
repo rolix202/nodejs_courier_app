@@ -2,6 +2,32 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.remove('loading');
+    setTimeout(function () {
+            document.getElementById('loader-container').style.opacity = '0';
+        }, 500);
+  })
+
+  window.addEventListener('load', function(){
+    setTimeout(function () {
+            document.getElementById('loader-container').style.display = 'none';
+        }, 1250);
+  })
+</script>
+
+<script>
+  function showPreloader() {
+      // Show the preloader
+      document.getElementById('preloaderContainer').style.display = 'flex';
+      // Submit the form after a short delay (simulating form submission)
+      setTimeout(function () {
+          document.getElementById('trackingForm').submit();
+      }, 1000);
+  }
+</script>
+
+<script>
   window.onscroll = function() {scrollFunction()};
 
   function scrollFunction() {
