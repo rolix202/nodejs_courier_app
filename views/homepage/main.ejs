@@ -1,6 +1,4 @@
-<div id="loader-container">
-    <img src="/images/loading2.gif" alt="alt" id="loader" >
-</div>
+
 
 <div class="wrapper">
     <div class="header_container">
@@ -46,16 +44,12 @@
 
 
 
-
-
-
-
-
     <div class="body_wrapper">
         <div class="track_container container">
             <div class="track_info">
                 <div class="p-3 text-bg-dark rounded-3 ">
-                    <form action="/packages/detail" method="GET" class="w-100 mx-auto" onsubmit="submitForm(event)">
+
+                    <form action="/packages/detail" method="get" class="w-100 mx-auto" onsubmit="showLoader()">
 
                         <div class="row g-3">
                             <div class="col-md-8">
@@ -76,6 +70,9 @@
         </div>
 
 
+        <div id="loader-container">
+            <img src="/images/loading2.gif" alt="alt" id="loader" >
+        </div>
 
 
         <div class="about_wrap">

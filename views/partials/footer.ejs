@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function(){
     document.body.classList.remove('loading');
     setTimeout(function () {
@@ -15,34 +15,28 @@
             document.getElementById('loader-container').style.display = 'none';
         }, 1250);
   })
-</script>
-
-
-
+</script> -->
 
 <script>
-  function submitForm(event) {
-      event.preventDefault(); // Prevent the default form submission
+  function showLoader() {
+      // Show the loader container until the form submission is complete
+      document.getElementById('loader-container').style.display = 'flex';
 
-      // Show SweetAlert indicating form submission
-      Swal.fire({
-          title: 'Getting Tracking Details ...',
-          text: 'Please wait...',
-          icon: 'info',
-          allowOutsideClick: false,
-          showConfirmButton: false,
-      });
-
-      // Simulate form submission (you can replace this with actual AJAX form submission)
+      // Use setTimeout to give the loader a moment to appear before the form is submitted
       setTimeout(() => {
-          // Close the SweetAlert
-          Swal.close();
-
-          // Submit the form
-          event.target.submit();
-      }, 2000); // Simulating a 2-second delay, replace with actual submission logic
+          // Hide the loader container after a brief delay
+          document.getElementById('loader-container').style.display = 'none';
+      }, 2000);
+      
+      // Continue with the form submission
+      return true;
   }
 </script>
+
+
+
+
+
 
 
 
