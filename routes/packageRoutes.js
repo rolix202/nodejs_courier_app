@@ -177,21 +177,6 @@ router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
 
 
 
-
-
-
-
-
-
-// Route to render the updatePackage.ejs template for GET requests
-// router.get('/update/:trackingNumber', isAuthenticated, (req, res) => {
-//   const { trackingNumber } = req.params;
-//   res.render('updatePackage/update', { trackingNumber });
-// });
-
-
-
-
 // Route to render the updatePackage.ejs template for GET requests
 router.get('/update/:trackingNumber', isAuthenticated, async (req, res) => {
   const { trackingNumber } = req.params;
