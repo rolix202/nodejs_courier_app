@@ -59,7 +59,7 @@ router.get('/detail', async (req, res) => {
     const packag = await Package.findOne({ trackingNumber });
 
     if (!packag) {
-      return res.status(404).json({ error: 'Package not found' });
+      return res.render('homepage/index.ejs', { msg: 'Package not found' });
     }
 
     res.render('trackingPage/viewPackage', { packag, trackingNumber });
@@ -75,10 +75,65 @@ router.get('/detail', async (req, res) => {
 
 // Route to update transit information by tracking number
 // Route to update transit information by tracking number
+// router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
+//   try {
+//     const { trackingNumber } = req.params;
+//     const { transitInfo, comment, location } = req.body;
+
+//     // Find the package by tracking number
+//     const packageToUpdate = await Package.findOne({ trackingNumber });
+
+//     if (!packageToUpdate) {
+//       return res.status(404).json({ error: 'Package not found' });
+//     }
+
+//     // Update transit information
+//     packageToUpdate.transitInfo.status = transitInfo.status;
+
+//     // Add a new entry to the transit history array
+//     packageToUpdate.transitHistory.push({
+//       status: transitInfo.status,
+//       comment,
+//       location,
+//       date: new Date(),
+//     });
+
+//     // Update receiver details if needed
+//     if (req.body.receiverDetails && req.body.receiverDetails.country) {
+//       packageToUpdate.receiverDetails.country = req.body.receiverDetails.country;
+//       packageToUpdate.receiverDetails.firstName = req.body.receiverDetails.firstName;
+//       packageToUpdate.receiverDetails.lastName = req.body.receiverDetails.lastName;
+//       packageToUpdate.receiverDetails.email = req.body.receiverDetails.email;
+//       packageToUpdate.receiverDetails.phoneNumber = req.body.receiverDetails.phoneNumber;
+//       packageToUpdate.receiverDetails.destinationAddress = req.body.receiverDetails.destinationAddress;
+//       packageToUpdate.receiverDetails.productName = req.body.receiverDetails.productName;
+//       packageToUpdate.receiverDetails.expectedDeliveryDate = req.body.receiverDetails.expectedDeliveryDate;
+//       packageToUpdate.receiverDetails.productDetails = req.body.receiverDetails.productDetails;
+//     }
+
+//     console.log(packageToUpdate);
+
+//     // Save the updated package
+//     // await packageToUpdate.save();
+
+//     // Redirect to the view page after updating transit information
+//     res.redirect('/packages/allpackage');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+
+
+
+
+
+// Route to update transit information by tracking number
 router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
   try {
     const { trackingNumber } = req.params;
-    const { transitInfo, comment, location } = req.body;
+    const { transitInfo, comment, location, receiverDetails } = req.body;
 
     // Find the package by tracking number
     const packageToUpdate = await Package.findOne({ trackingNumber });
@@ -98,10 +153,13 @@ router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
       date: new Date(),
     });
 
-    // Update receiver details if needed
-    if (req.body.receiverDetails && req.body.receiverDetails.country) {
-      packageToUpdate.receiverDetails.country = req.body.receiverDetails.country;
+    // Update receiver details
+    if (receiverDetails) {
+      packageToUpdate.receiverDetails = receiverDetails;
     }
+
+
+    // console.log(packageToUpdate);
 
     // Save the updated package
     await packageToUpdate.save();
@@ -117,11 +175,46 @@ router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
 // Route to render the updatePackage.ejs template for GET requests
-router.get('/update/:trackingNumber', isAuthenticated, (req, res) => {
+// router.get('/update/:trackingNumber', isAuthenticated, (req, res) => {
+//   const { trackingNumber } = req.params;
+//   res.render('updatePackage/update', { trackingNumber });
+// });
+
+
+
+
+// Route to render the updatePackage.ejs template for GET requests
+router.get('/update/:trackingNumber', isAuthenticated, async (req, res) => {
   const { trackingNumber } = req.params;
-  res.render('updatePackage/update', { trackingNumber });
+
+  try {
+    const packageToUpdate = await Package.findOne({ trackingNumber });
+
+    if (!packageToUpdate) {
+      return res.status(404).json({ error: 'Package not found' });
+    }
+
+    res.render('updatePackage/update', { trackingNumber, packageToUpdate });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
+
+
+
+
+
 
 router.get('/allpackage', isAuthenticated, async (req, res) => {
   try {

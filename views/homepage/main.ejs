@@ -48,7 +48,11 @@
         <div class="track_container container">
             <div class="track_info">
                 <div class="p-3 text-bg-dark rounded-3 ">
-
+                    <% if (msg) { %>
+                        <div class="alert alert-danger w-50 mx-auto animate__animated animate__shakeX text-center" role="alert">
+                            <%= msg %>
+                        </div>
+                    <% } %>
                     <form action="/packages/detail" method="get" class="w-100 mx-auto" onsubmit="showLoader()">
 
                         <div class="row g-3">

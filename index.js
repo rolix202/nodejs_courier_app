@@ -40,7 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Basic routes
 app.get('/', (req, res) => {
-    res.render('homepage/index.ejs')
+    res.render('homepage/index.ejs', {msg : ''})
   });
 app.get('/contact-us', (req, res) => {
     res.render('contact/contactH.ejs')

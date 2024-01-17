@@ -82,6 +82,10 @@
     width: 556px;
     height: auto;
 }
+.alert{
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+}
 
 .main_info{
     font-family: 'Raleway', sans-serif;
