@@ -45,9 +45,14 @@ app.get('/', (req, res) => {
 app.get('/contact-us', (req, res) => {
     res.render('contact/contactH.ejs')
 })
+// app.get('/track', (req, res) => {
+//     res.render('track/main.ejs')
+// })
+
 app.use('/packages', packageRoutes);
 app.use('/', messageRoute);
 app.use('/', authRoute)
+
 
 const port = process.env.PORT || 5000;
 

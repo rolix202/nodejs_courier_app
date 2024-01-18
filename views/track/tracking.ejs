@@ -1,0 +1,255 @@
+<div class="wrapper">
+    <%- include('../trackingPage/menu.ejs') %>
+        <div class="container section_wrap">
+            <div class="details">
+                <div class="order">
+                    <h1>Order: <span>
+                            <%= packag.trackingNumber %>
+                        </span> </h1>
+                </div>
+                <div class="date">
+                    <p>Expected Arrival: <b>
+                            <%= packag.receiverDetails.expectedDeliveryDate.toDateString() %>
+                        </b></p>
+                    <p>Reference No.: <b>
+                            <%= packag.receiverDetails.referenceNumber %>
+                        </b></p>
+                </div>
+            </div>
+
+            <div class="track d-none d-md-block">
+                <ul id="progress" class="text-center">
+                    <% packag.transitHistory.forEach((history, index)=> { %>
+                        <li class="<%= index === 0 ? '' : 'active' %>">
+                            <span class="status-text">
+                                <%= history.status %>
+                            </span>
+                        </li>
+
+                        <% }) %>
+                </ul>
+
+        
+            </div>
+        </div>
+
+
+
+
+
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">PACKAGE DETAILS</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="table_width">
+                                <p class="card-text fw-bold">Product Name: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.productName %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Product Description: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.productDetails %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Reference Number: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.referenceNumber %>
+                                </span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">SENDER DETAILS</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="w-25">
+                                <p class="card-text fw-bold">First Name: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.senderDetails.firstName %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Last Name: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.senderDetails.lastName %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Email: </p>
+                            </td>
+                            <td><span>
+                                    <%= packag.senderDetails.email %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Phone Number: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.senderDetails.phoneNumber %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Address: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.senderDetails.address %>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">RECEIVER DETAILS</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="table_width">
+                                <p class="card-text fw-bold">First Name: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.firstName %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Last Name: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.lastName %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Email: </p>
+                            </td>
+                            <td><span>
+                                    <%= packag.receiverDetails.email %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Phone Number: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.phoneNumber %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text fw-bold">Destination Address: </p>
+                            </td>
+                            <td><span class="text-capitalize">
+                                    <%= packag.receiverDetails.destinationAddress %>
+                                </span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <% packag.transitHistory.forEach(history=> { %>
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <h4 class="border-bottom pb-2 mb-0">Transit History - <span class="text-success fw-bold">
+                            <%= history.date.toUTCString() %>
+                        </span></h4>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">Status</strong>
+                            <span class="status">
+                                <%= history.status %>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="d-flex text-body-secondary pt-3">
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">Location</strong>
+                            <%= history.location %>
+                        </p>
+                    </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">Message</strong>
+                            <span class="text-primary">
+                                <%= history.comment %>
+                            </span>
+
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+</div>
+
+<!-- Add a script section to handle dynamic width calculation -->
+
+<!-- ... (previous HTML code) ... -->
+
+<script>
+    // Function to calculate dynamic width for #progress::before
+    function updateProgress() {
+        const progress = document.getElementById('progress');
+
+        if (!progress) {
+            console.error('Progress element not found.');
+            return;
+        }
+
+        const progressItems = progress.querySelectorAll('li');
+        const numItems = progressItems.length;
+
+        // Calculate the width based on the number of completed items
+        const completedItems = document.querySelectorAll('#progress .active').length;
+        const activeItemWidth = (completedItems / numItems) * 100; // Adjust this value based on your design
+        progress.style.setProperty('--progress-width', `${activeItemWidth}%`);
+    }
+
+    // Call the function when the page is loaded and whenever the transit history updates
+    window.onload = updateProgress;
+</script>

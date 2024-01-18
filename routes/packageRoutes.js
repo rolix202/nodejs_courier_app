@@ -61,8 +61,8 @@ router.get('/detail', async (req, res) => {
     if (!packag) {
       return res.render('homepage/index.ejs', { msg: 'Package not found' });
     }
-
-    res.render('trackingPage/viewPackage', { packag, trackingNumber });
+    // trackingPage/viewPackage
+    res.render('track/main', { packag, trackingNumber });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
