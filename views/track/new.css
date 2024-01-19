@@ -50,12 +50,9 @@ body{
 .section_wrap{
     background-color: var(--cont);
     z-index: 11;
-    margin-top: 100px;
     padding: 50px 50px 1px 50px;
     border-radius: 20px;
 }
-
-
 .details{
 	display: flex;
 	gap: 1em;
@@ -72,20 +69,16 @@ body{
 	font-size: 1.1rem;
 }
 .track{
-	margin: 2em 0 6em;
+	margin: 4em 0 8em;
 }
 #progress{
 	list-style: none;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	gap: 1em;
 	position: relative;
 	text-align: center;
 }
 #progress li{
-	width: 10%;
+	width: var(--progress-width, 0%);
 	position: relative;
 }
 #progress li::before{
@@ -102,34 +95,38 @@ body{
 	border-radius: 50%;
 	z-index: 1111111;
 }
+
+
+
 #progress li:last-child::before{
-	content: '🏘️';
-    position: absolute;
-    top: -5px;
+	content: '\2713';
 	font-weight: bold;
-    font-size: 30px;
-	background: var(--light);
+	background: green;
 }
-#progress::before{
-	content: '';
-	position: absolute;
-	top: 10px;
-	width: 66%;
-	height: 10px;
-	background: var(--line);
-	z-index: 111;
-}
-.hold{
-    position: relative;
-}
-.hold span{
+#progress::before {
+    content: '';
     position: absolute;
-    top: 35px;
-    left: -36px;
-    /* background-color: red; */
-    font-size: 13px;
-    width: 100px;
+    top: 10px;
+    width: var(--progress-width, 0%); /* Start with 0 width */
+    height: 10px;
+    background: var(--line);
+    z-index: 111;
+    transition: width 0.5s ease; 
+    margin-right: 1em;
 }
+
+.status-text {
+    position: absolute;
+    margin: 50px;
+    /* left: -50%; */
+    width: var(--progress-width, 0%);
+    font-size: 1.1rem;
+    color: #333; 
+    transform: translateX(-160%);
+   
+}
+
+
 #progress::after{
 	content: '';
 	position: absolute;
@@ -137,10 +134,6 @@ body{
 	width: 90%;
 	height: 10px;
 	background: #c5cae9;
-}
-#progress .secondtolast::before {
-    background-color: var(--cont);
-    z-index: -1;
 }
 .lists{
 	display: flex;
@@ -156,8 +149,9 @@ body{
 .list p{
 	font-size: 1.1rem;
 }
-.list img{
-	width: 50px;
+.status {
+    font-weight: bold;
+    color: #007bff;
 }
 @media (max-width: 768px){
     .section_wrap{

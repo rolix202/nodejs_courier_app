@@ -17,22 +17,20 @@
                 </div>
             </div>
 
-
             <div class="track d-none d-md-block">
                 <ul id="progress" class="text-center">
-                    <li class="active"></li>
-                    <li class="active"></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class="hold text-danger fw-bold">
-                        <span>On Hold</span>
-                    </li>
-                    <li class="secondtolast"></li>
-                    <li class=""></li>
+                    <% packag.transitHistory.forEach((history, index)=> { %>
+                        <li class="<%= index === 0 ? '' : 'active' %>">
+                            <span class="status-text">
+                                <%= history.status %>
+                            </span>
+                        </li>
+
+                        <% }) %>
                 </ul>
+
+
             </div>
-    
         </div>
 
 
