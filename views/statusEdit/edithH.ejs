@@ -61,10 +61,15 @@
                 
 
 
-                    <div class="col-12">
+                    <div class="col-md-6">
                         <label for="location" class="form-label">Location:</label>
                         <input type="text" class="form-control" id="location" name="location"  value="<%= transHistory.location %>"
                             placeholder="Enter location" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="expectedDeliveryDate" class="form-label">Expected Delivery Date</label>
+                        <input type="date" class="form-control" id="expectedDeliveryDate"
+                            name="date" value="<%= transHistory.date ? transHistory.date.toISOString().split('T')[0] : 'YYYY-MM-DD' %>">
                     </div>
 
                     <div class="col-12">

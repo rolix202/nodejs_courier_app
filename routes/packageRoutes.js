@@ -176,7 +176,7 @@ router.post('/delete/:trackingNumber', isAuthenticated, async (req, res) => {
 });
 
 
-router.get('/view-history/:trackingNumber', async(req, res) => {
+router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => {
 
   try {
     const { trackingNumber } = req.params;
@@ -196,7 +196,7 @@ router.get('/view-history/:trackingNumber', async(req, res) => {
 
 })
 
-router.get('/edit-transit/:trackingNumber/:getStatus', async (req, res) => {
+router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (req, res) => {
   try {
     const { trackingNumber, getStatus } = req.params;
     
@@ -217,9 +217,9 @@ router.get('/edit-transit/:trackingNumber/:getStatus', async (req, res) => {
   }
 })
 
-router.post('/update-status', async (req, res) => {
+router.post('/update-status', isAuthenticated, async (req, res) => {
   try {
-    const { trackingNumber, status, location, comment } = req.body;
+    const { trackingNumber, status, location, date, comment } = req.body;
 
     // console.log(req.body.status);
 
@@ -234,6 +234,7 @@ router.post('/update-status', async (req, res) => {
 
   history.location = location;
   history.comment = comment.trim();
+  history.date = date;
 
   // console.log(history);
 
