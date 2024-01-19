@@ -4,6 +4,7 @@ import { Router } from 'express';
 const router = Router()
 import Package from '../models/package.js'
 import { isAuthenticated } from '../middleware/authenticationMiddleware.js';
+import { validateInput } from '../middleware/validationMiddleware.js';
 
 // sRprhYYMkCVZ
 
@@ -71,66 +72,8 @@ router.get('/detail', async (req, res) => {
 
 
 
-// Assuming you have already imported necessary modules and models
-
 // Route to update transit information by tracking number
-// Route to update transit information by tracking number
-// router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
-//   try {
-//     const { trackingNumber } = req.params;
-//     const { transitInfo, comment, location } = req.body;
-
-//     // Find the package by tracking number
-//     const packageToUpdate = await Package.findOne({ trackingNumber });
-
-//     if (!packageToUpdate) {
-//       return res.status(404).json({ error: 'Package not found' });
-//     }
-
-//     // Update transit information
-//     packageToUpdate.transitInfo.status = transitInfo.status;
-
-//     // Add a new entry to the transit history array
-//     packageToUpdate.transitHistory.push({
-//       status: transitInfo.status,
-//       comment,
-//       location,
-//       date: new Date(),
-//     });
-
-//     // Update receiver details if needed
-//     if (req.body.receiverDetails && req.body.receiverDetails.country) {
-//       packageToUpdate.receiverDetails.country = req.body.receiverDetails.country;
-//       packageToUpdate.receiverDetails.firstName = req.body.receiverDetails.firstName;
-//       packageToUpdate.receiverDetails.lastName = req.body.receiverDetails.lastName;
-//       packageToUpdate.receiverDetails.email = req.body.receiverDetails.email;
-//       packageToUpdate.receiverDetails.phoneNumber = req.body.receiverDetails.phoneNumber;
-//       packageToUpdate.receiverDetails.destinationAddress = req.body.receiverDetails.destinationAddress;
-//       packageToUpdate.receiverDetails.productName = req.body.receiverDetails.productName;
-//       packageToUpdate.receiverDetails.expectedDeliveryDate = req.body.receiverDetails.expectedDeliveryDate;
-//       packageToUpdate.receiverDetails.productDetails = req.body.receiverDetails.productDetails;
-//     }
-
-//     console.log(packageToUpdate);
-
-//     // Save the updated package
-//     // await packageToUpdate.save();
-
-//     // Redirect to the view page after updating transit information
-//     res.redirect('/packages/allpackage');
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-
-
-
-
-
-
-// Route to update transit information by tracking number
-router.post('/update/:trackingNumber', isAuthenticated, async (req, res) => {
+router.post('/update/:trackingNumber', validateInput, isAuthenticated, async (req, res) => {
   try {
     const { trackingNumber } = req.params;
     const { transitInfo, comment, location, receiverDetails } = req.body;
@@ -231,4 +174,103 @@ router.post('/delete/:trackingNumber', isAuthenticated, async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => {
+
+  try {
+    const { trackingNumber } = req.params;
+    const history = await Package.findOne({ trackingNumber })
+
+    if (!history){
+        return res.render('allPackages/getAllPackages.ejs', { msg: 'Reference number not found' });
+    }
+
+    const { transitHistory } = history;
+
+    res.render('viewHistory/viewH.ejs', { transitHistory, trackingNumber });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+})
+
+router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (req, res) => {
+  try {
+    const { trackingNumber, getStatus } = req.params;
+    
+    const user = await Package.findOne({ trackingNumber });
+
+    const transHistory = user.transitHistory.find(transit => transit.status === getStatus);
+
+    if (!transHistory) {
+      return res.render('viewHistory/viewH.ejs', {msg: 'Transit history not found'});
+  }
+
+  res.render('statusEdit/editM.ejs', { trackingNumber, transHistory });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+router.post('/update-status', validateInput, isAuthenticated, async (req, res) => {
+  try {
+    const { trackingNumber, status, location, comment } = req.body;
+
+    const userInfo = await Package.findOne({trackingNumber})
+    const history = userInfo.transitHistory.find(transit => transit.status === status)
+
+    // console.log(history);
+
+    if (!history) {
+      return res.status(404).json({ error: 'Transit history not found' });
+  }
+
+  history.status = status;
+  history.location = location;
+  history.comment = comment;
+
+  // console.log(history);
+
+  await userInfo.save();
+
+  res.redirect(`/packages/view-history/${trackingNumber}`);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+router.post('/delete', isAuthenticated, async(req, res) => {
+  try {
+    const {trackingNumber, history_id} = req.body;
+
+    const packageToUpdate = await Package.findOne({ trackingNumber });
+
+    if (!packageToUpdate) {
+      return res.status(404).json({ error: 'Package not found' });
+    }
+
+    // Find and remove the specified transit history entry by _id
+    packageToUpdate.transitHistory = packageToUpdate.transitHistory.filter(
+      (transit) => transit._id.toString() !== history_id
+    );
+
+    // console.log(packageToUpdate);
+   
+    await packageToUpdate.save();
+
+    // Redirect to the view page after updating transit information
+    res.redirect(`/packages/view-history/${trackingNumber}`);
+
+  } catch (error) {
+    
+  }
+})
+
+
 export default router

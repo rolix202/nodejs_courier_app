@@ -10,6 +10,12 @@
 .wrapper{
     width: 100%;
 }
+.cardDetails{
+    --bs-card-spacer-x: 0 !important; 
+}
+.historyGr{
+    --bs-border-width: 0 !important;
+}
 .header_container{
     /* background-image: url('/images/banner.jpg');
     background-repeat: no-repeat;
@@ -435,3 +441,11 @@
     100% { transform: rotate(360deg); }
 }
 
+/* //////////////////////// */
+
+.list-group {
+    width: 100%;
+    max-width: 460px;
+    /* margin-inline: 1.5rem; */
+  }
+  

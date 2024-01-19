@@ -73,8 +73,10 @@
                         <% packages.forEach((package, index)=> { %>
                             <tr>
                                 <th scope="row"><%= index + 1 %></th>
+                                
                                 <td>
-                                    <%= package.receiverDetails.referenceNumber %>
+                                    <a class="text-primary" href="/packages/view-history/<%= package.trackingNumber %>"> <%= package.receiverDetails.referenceNumber %></a>
+                                   
                                 </td>
                                 <td>
                                     <%= package.receiverDetails.firstName %>

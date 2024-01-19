@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+                aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">BorderCross Logistics</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                                href="/packages/dashboard">
+                                <i class="fa-solid fa-house-chimney-window"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="/packages/add">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Add Package
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="/packages/allpackage">
+                                <i class="fa-solid fa-user"></i>
+                                All Package
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <hr class="my-3">
+
+                    <ul class="nav flex-column mb-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Update Transit Package</h1>
+            </div>
+
+            <form action="/packages/update-status" method="POST" class="w-50">
+                <input type="hidden" name="trackingNumber" value="<%= trackingNumber %>">
+                <div class="row g-3">
+                   
+                        <select hidden id="transitStatus" class="form-select" name="status" value="transHistory.status">
+                            <option value="Accepted">Accepted</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Out for Delivery">Out for Delivery</option>
+                            <option value="In Transit">In Transit</option>
+                            <option value="Delay">Delay</option>
+                            <option value="Change of Route">Change of Route</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="Released">Released</option>
+                            <option value="Package Delivered">Package Delivered</option>
+                        </select>
+
+
+                    <div class="col-12">
+                        <label for="location" class="form-label">Location:</label>
+                        <input type="text" class="form-control" id="location" name="location"  value="<%= transHistory.location %>"
+                            placeholder="Enter location" >
+                    </div>
+
+                    <div class="col-12">
+                        <label for="comment" class="form-label">Message: </label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3">
+                            <%= transHistory.comment %>
+                        </textarea>
+                    </div>
+                
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </main>
+    </div>
+</div>

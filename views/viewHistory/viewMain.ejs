@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+                aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">BorderCross Logistics</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                                href="/packages/dashboard">
+                                <i class="fa-solid fa-house-chimney-window"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="/packages/add">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Add Package
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="/packages/allpackage">
+                                <i class="fa-solid fa-user"></i>
+                                All Package
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <hr class="my-3">
+
+                    <ul class="nav flex-column mb-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Tracking History</h1>
+            </div>
+
+            <div class="container">
+                <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+
+                    <% transitHistory.forEach(transit=> { %>
+                        <div class="col">
+                            <div class="card border-success mb-3 cardDetails" style="max-width: 20rem;">
+                                <div class="card-header text-center bg-primary text-white fw-bold border-success">
+                                    <span>
+                                        <%= transit.date.toUTCString() %>
+                                    </span>
+                                </div>
+                                <div class="card-body text-success">
+                                    <p class="pb-3 mb-0 small text-center lh-sm border-bottom">
+                                        <strong class="text-gray-dark">Status: </strong>
+                                        <span class="text-primary fw-bold fs-5">
+                                            <%= transit.status %>
+                                        </span>
+                                    </p>
+
+                                    <div
+                                        class="d-flex flex-column flex-md-row gap-4 py-md-2 align-items-center justify-content-center">
+                                        <div class="list-group historyGr">
+                                            <label class="list-group-item d-flex gap-2">
+                                                <span>
+                                                    <b>Location</b>
+                                                    <small class="d-block text-body-secondary">
+                                                        <%= transit.location %>
+                                                    </small>
+                                                </span>
+                                            </label>
+                                            <label class="list-group-item d-flex gap-2">
+                                                <span>
+                                                    <b>Message</b>
+                                                    <small class="d-block text-body-secondary">
+                                                        <%= transit.comment %>
+                                                    </small>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-end bg-transparent border-success">
+                                        <a class="btn btn-primary mx-3 "
+                                            href="/packages/edit-transit/<%= trackingNumber %>/<%= transit.status %>">Edit</a>
+
+                                            <form action="/packages/delete" method="POST">
+                                                    <input type="hidden" name="trackingNumber" value="<%= trackingNumber %>">
+                                                    <input type="hidden" name="history_id" value="<%= transit._id %>">
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+</div>
