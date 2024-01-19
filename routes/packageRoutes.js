@@ -176,7 +176,7 @@ router.post('/delete/:trackingNumber', isAuthenticated, async (req, res) => {
 });
 
 
-router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => {
+router.get('/view-history/:trackingNumber', async(req, res) => {
 
   try {
     const { trackingNumber } = req.params;
@@ -196,7 +196,7 @@ router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => 
 
 })
 
-router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (req, res) => {
+router.get('/edit-transit/:trackingNumber/:getStatus', async (req, res) => {
   try {
     const { trackingNumber, getStatus } = req.params;
     
@@ -208,6 +208,7 @@ router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (r
       return res.render('viewHistory/viewH.ejs', {msg: 'Transit history not found'});
   }
 
+  // console.log(transHistory.status);
   res.render('statusEdit/editM.ejs', { trackingNumber, transHistory });
 
   } catch (error) {
@@ -216,22 +217,23 @@ router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (r
   }
 })
 
-router.post('/update-status', validateInput, isAuthenticated, async (req, res) => {
+router.post('/update-status', async (req, res) => {
   try {
     const { trackingNumber, status, location, comment } = req.body;
 
+    // console.log(req.body.status);
+
     const userInfo = await Package.findOne({trackingNumber})
     const history = userInfo.transitHistory.find(transit => transit.status === status)
-
-    // console.log(history);
 
     if (!history) {
       return res.status(404).json({ error: 'Transit history not found' });
   }
 
-  history.status = status;
+  // console.log(history);
+
   history.location = location;
-  history.comment = comment;
+  history.comment = comment.trim();
 
   // console.log(history);
 

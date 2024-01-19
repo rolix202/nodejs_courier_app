@@ -55,19 +55,10 @@
 
             <form action="/packages/update-status" method="POST" class="w-50">
                 <input type="hidden" name="trackingNumber" value="<%= trackingNumber %>">
+                <input type="hidden" name="status" value="<%= transHistory.status %>">
                 <div class="row g-3">
-                   
-                        <select hidden id="transitStatus" class="form-select" name="status" value="transHistory.status">
-                            <option value="Accepted">Accepted</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Out for Delivery">Out for Delivery</option>
-                            <option value="In Transit">In Transit</option>
-                            <option value="Delay">Delay</option>
-                            <option value="Change of Route">Change of Route</option>
-                            <option value="On Hold">On Hold</option>
-                            <option value="Released">Released</option>
-                            <option value="Package Delivered">Package Delivered</option>
-                        </select>
+                    
+                
 
 
                     <div class="col-12">
@@ -79,7 +70,7 @@
                     <div class="col-12">
                         <label for="comment" class="form-label">Message: </label>
                         <textarea class="form-control" id="comment" name="comment" rows="3">
-                            <%= transHistory.comment %>
+                            <%= transHistory.comment.trim() %>
                         </textarea>
                     </div>
                 
