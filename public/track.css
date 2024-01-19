@@ -62,7 +62,7 @@ body{
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-.order h1{
+.order h3{
 	text-transform: uppercase;
 }
 .order span{
