@@ -51,7 +51,7 @@ body{
     background-color: var(--cont);
     z-index: 11;
     margin-top: 100px;
-    padding: 50px 50px 1px 50px;
+    padding: 50px;
     border-radius: 20px;
 }
 
@@ -163,4 +163,8 @@ body{
     .section_wrap{
         border-radius: 0;
     }
+	.img222{
+		width: 90%;
+		height: auto;
+	}
 }

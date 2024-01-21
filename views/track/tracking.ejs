@@ -1,7 +1,7 @@
 <div class="wrapper">
     <%- include('../trackingPage/menu.ejs') %>
         <div class="container section_wrap">
-            <div class="details">
+            <!-- <div class="details">
                 <div class="order">
                     <h3>Order: <span>
                             <%= packag.trackingNumber %>
@@ -13,12 +13,16 @@
                         </b></p>
                     <p>Reference No.: <b>
                             <%= packag.receiverDetails.referenceNumber %>
+                            <%= packag.transitHistory.status %>
+
+                           
+                            
                         </b></p>
                 </div>
-            </div>
+            </div> -->
 
 
-            <div class="track d-none d-md-block">
+            <!-- <div class="track d-none d-md-block">
                 <ul id="progress" class="text-center">
                     <li class="active"></li>
                     <li class="active"></li>
@@ -31,9 +35,53 @@
                     <li class="secondtolast"></li>
                     <li class=""></li>
                 </ul>
+            </div> -->
+
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="order">
+                        <h3>Order: <span>
+                                <%= packag.trackingNumber %>
+                            </span>
+                        </h3>
+                        <div class="date">
+                            
+                            <p>Reference No.: <b>
+                                    <%= packag.receiverDetails.referenceNumber %>
+
+                                </b></p>
+                                <p> Expected Arrival: <span class="fw-bold text-success fs-1"><br>
+                                    <i class="fa-solid fa-calendar-days"></i> <%= packag.receiverDetails.expectedDeliveryDate.toDateString() %>
+                                </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="trackingGif text-center">
+                        <% const lastStatus=packag.transitHistory.length> 0 ?
+                            packag.transitHistory[packag.transitHistory.length - 1].status : ''; %>
+                            <% if (['Accepted', 'Out for Delivery' , 'Delay' , 'Processing' ].includes(lastStatus)) { %>
+                                <img src="/images/status.gif" width="50%" height="auto" alt="">
+                                <% } else { %>
+                                    <img src="/images/status2.gif" alt="" class="img222">
+                                    <% } %>
+                    </div>
+                </div>
             </div>
-    
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
+
 
 
 
@@ -194,9 +242,10 @@
                             <%= history.date.toUTCString() %>
                         </span></h4>
                     <div class="d-flex text-body-secondary pt-3">
-                        <i class="fa-solid fa-truck-fast bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
+                        <i
+                            class="fa-solid fa-truck-fast bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
                         <p class="pb-3 mb-0 small lh-sm border-bottom">
-                         
+
                             <strong class="d-block text-gray-dark">Status</strong>
                             <span class="status">
                                 <%= history.status %>
@@ -205,14 +254,16 @@
                     </div>
 
                     <div class="d-flex text-body-secondary pt-3">
-                        <i class="fa-solid fa-location-dot bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
+                        <i
+                            class="fa-solid fa-location-dot bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
                         <p class="pb-3 mb-0 small lh-sm border-bottom">
                             <strong class="d-block text-gray-dark">Location</strong>
                             <%= history.location %>
                         </p>
                     </div>
                     <div class="d-flex text-body-secondary pt-3">
-                        <i class="fa-solid fa-message bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
+                        <i
+                            class="fa-solid fa-message bd-placeholder-img flex-shrink-0 me-2 rounded fs-5 text-warning"></i>
 
                         <p class="pb-3 mb-0 small lh-sm border-bottom">
                             <strong class="d-block text-gray-dark">Message</strong>

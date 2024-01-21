@@ -50,7 +50,7 @@ body{
 .section_wrap{
     background-color: var(--cont);
     z-index: 11;
-    padding: 50px 50px 1px 50px;
+    padding: 300px;
     border-radius: 20px;
 }
 .details{
