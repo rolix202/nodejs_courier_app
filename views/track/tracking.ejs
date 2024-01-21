@@ -38,6 +38,10 @@
             </div> -->
 
             <div class="row">
+                <span class="text-end fw-bold ">Status:
+                    <span class="statusss"> <%= packag.transitHistory[packag.transitHistory.length - 1].status %></span>
+                   
+                </span>
                 <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                     <div class="order">
                         <h3>Order: <span>
@@ -45,13 +49,14 @@
                             </span>
                         </h3>
                         <div class="date">
-                            
+
                             <p>Reference No.: <b>
                                     <%= packag.receiverDetails.referenceNumber %>
 
                                 </b></p>
-                                <p> Expected Arrival: <span class="fw-bold text-success fs-1"><br>
-                                    <i class="fa-solid fa-calendar-days"></i> <%= packag.receiverDetails.expectedDeliveryDate.toDateString() %>
+                            <p> Expected Arrival: <span class="fw-bold text-success fs-1"><br>
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <%= packag.receiverDetails.expectedDeliveryDate.toDateString() %>
                                 </span></p>
                         </div>
                     </div>
