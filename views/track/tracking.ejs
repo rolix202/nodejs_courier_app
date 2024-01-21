@@ -60,7 +60,7 @@
                     <div class="trackingGif text-center">
                         <% const lastStatus=packag.transitHistory.length> 0 ?
                             packag.transitHistory[packag.transitHistory.length - 1].status : ''; %>
-                            <% if (['Accepted', 'On hold' , 'Delay' , 'Processing' ].includes(lastStatus)) { %>
+                            <% if (['Accepted', 'On Hold' , 'Delay' , 'Processing' ].includes(lastStatus)) { %>
                                 <img src="/images/status.gif" width="50%" height="auto" alt="">
                                 <% } else { %>
                                     <img src="/images/status2.gif" alt="" class="img222">
