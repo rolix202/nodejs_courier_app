@@ -76,7 +76,7 @@ router.get('/detail', async (req, res) => {
 router.post('/update/:trackingNumber', validateInput, isAuthenticated, async (req, res) => {
   try {
     const { trackingNumber } = req.params;
-    const { transitInfo, comment, location, receiverDetails } = req.body;
+    const { transitInfo, comment, location } = req.body;
 
     // Find the package by tracking number
     const packageToUpdate = await Package.findOne({ trackingNumber });
@@ -96,11 +96,7 @@ router.post('/update/:trackingNumber', validateInput, isAuthenticated, async (re
       date: new Date(),
     });
 
-    // Update receiver details
-    if (receiverDetails) {
-      packageToUpdate.receiverDetails = receiverDetails;
-    }
-
+   
 
     // console.log(packageToUpdate);
 
@@ -176,14 +172,14 @@ router.post('/delete/:trackingNumber', isAuthenticated, async (req, res) => {
 });
 
 
-router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => {
+router.get('/view-history/:trackingNumber', isAuthenticated, async (req, res) => {
 
   try {
     const { trackingNumber } = req.params;
     const history = await Package.findOne({ trackingNumber })
 
-    if (!history){
-        return res.render('allPackages/getAllPackages.ejs', { msg: 'Reference number not found' });
+    if (!history) {
+      return res.render('allPackages/getAllPackages.ejs', { msg: 'Reference number not found' });
     }
 
     const { transitHistory } = history;
@@ -199,17 +195,17 @@ router.get('/view-history/:trackingNumber', isAuthenticated, async(req, res) => 
 router.get('/edit-transit/:trackingNumber/:getStatus', isAuthenticated, async (req, res) => {
   try {
     const { trackingNumber, getStatus } = req.params;
-    
+
     const user = await Package.findOne({ trackingNumber });
 
     const transHistory = user.transitHistory.find(transit => transit.status === getStatus);
 
     if (!transHistory) {
-      return res.render('viewHistory/viewH.ejs', {msg: 'Transit history not found'});
-  }
+      return res.render('viewHistory/viewH.ejs', { msg: 'Transit history not found' });
+    }
 
-  // console.log(transHistory.status);
-  res.render('statusEdit/editM.ejs', { trackingNumber, transHistory });
+    // console.log(transHistory.status);
+    res.render('statusEdit/editM.ejs', { trackingNumber, transHistory });
 
   } catch (error) {
     console.error(error);
@@ -223,24 +219,24 @@ router.post('/update-status', isAuthenticated, async (req, res) => {
 
     // console.log(req.body.status);
 
-    const userInfo = await Package.findOne({trackingNumber})
+    const userInfo = await Package.findOne({ trackingNumber })
     const history = userInfo.transitHistory.find(transit => transit.status === status)
 
     if (!history) {
       return res.status(404).json({ error: 'Transit history not found' });
-  }
+    }
 
-  // console.log(history);
+    // console.log(history);
 
-  history.location = location;
-  history.comment = comment.trim();
-  history.date = date;
+    history.location = location;
+    history.comment = comment.trim();
+    history.date = date;
 
-  // console.log(history);
+    // console.log(history);
 
-  await userInfo.save();
+    await userInfo.save();
 
-  res.redirect(`/packages/view-history/${trackingNumber}`);
+    res.redirect(`/packages/view-history/${trackingNumber}`);
 
   } catch (error) {
     console.error(error);
@@ -248,9 +244,9 @@ router.post('/update-status', isAuthenticated, async (req, res) => {
   }
 })
 
-router.post('/delete', isAuthenticated, async(req, res) => {
+router.post('/delete', isAuthenticated, async (req, res) => {
   try {
-    const {trackingNumber, history_id} = req.body;
+    const { trackingNumber, history_id } = req.body;
 
     const packageToUpdate = await Package.findOne({ trackingNumber });
 
@@ -264,11 +260,65 @@ router.post('/delete', isAuthenticated, async(req, res) => {
     );
 
     // console.log(packageToUpdate);
-   
+
     await packageToUpdate.save();
 
     // Redirect to the view page after updating transit information
     res.redirect(`/packages/view-history/${trackingNumber}`);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+router.get('/users', async (req, res) => {
+  try {
+    const users = await Package.find()
+    
+    res.render('users/includes.ejs', {users})
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+router.get('/update-user/:trackingNumber', async (req,res) => {
+  try {
+    const { trackingNumber } = req.params;
+    const userInfo = await Package.findOne({trackingNumber});
+
+    res.render('updateUsers/updateIncludes.ejs', {userInfo})
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+router.post('/update-user/:trackingNumber', async (req, res) => {
+  try {
+    const { trackingNumber } = req.params;
+    const {senderDetails, receiverDetails} = req.body;
+    
+    const userUpdate = await Package.findOne({trackingNumber});
+    if (!userUpdate){
+      return res.render('updateUsers/updateIncludes.ejs', {msg: 'User not found'})
+    }
+
+    // console.log(userUpdate);
+
+    if (senderDetails || receiverDetails){
+      userUpdate.senderDetails = senderDetails;
+      userUpdate.receiverDetails = receiverDetails
+    }
+
+   await userUpdate.save();
+   res.redirect('/packages/users')
+   console.error(error);
+   res.status(500).json({ error: 'Internal Server Error' });
 
   } catch (error) {
     

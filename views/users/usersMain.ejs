@@ -1,10 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-            
             <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
                 aria-labelledby="sidebarMenuLabel">
-                
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="sidebarMenuLabel">BorderCross Logistics</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
@@ -37,13 +35,13 @@
                                 All Package
                             </a>
                         </li>
-                       
+
                     </ul>
 
                     <hr class="my-3">
 
                     <ul class="nav flex-column mb-auto">
-                        
+
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="/logout">
                                 <i class="fa-solid fa-right-from-bracket"></i>
@@ -58,10 +56,60 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
+                <h1 class="h2">All Users</h1>
             </div>
 
-          
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Reference Number</th>
+                            <th scope="col">Sender  First Name</th>
+                            <th scope="col">Reciever First Name</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Tracking Number</th>
+                            <th scope="col">Expected Delivery</th>
+                            <th scope="col">Dest. Address</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user, index)=> { %>
+                            <tr>
+                                <th scope="row"><%= index + 1 %></th>
+                                
+                                <td>
+                                    <a class="text-primary" href="/packages/view-history/<%= user.trackingNumber %>"> <%= user.receiverDetails.referenceNumber %></a>
+                                   
+                                </td>
+                                <td>
+                                    <%= user.senderDetails.firstName %>
+                                </td>
+                                <td>
+                                    <%= user.receiverDetails.firstName %>
+                                </td>
+                                <td>
+                                    <%= user.receiverDetails.productName %>
+                                </td>
+                                <td>
+                                    <%= user.trackingNumber %>
+                                </td>
+                                <td>
+                                    <%= user.receiverDetails.expectedDeliveryDate.toDateString() %>
+                                </td>
+                                <td>
+                                    <%= user.receiverDetails.destinationAddress %>
+                                </td>
+                                <td>
+                                    <a class="text-primary fs-5" href="/packages/update-user/<%= user.trackingNumber %>"><i class="fas fa-edit"></i></a>
+                                    
+                                </td>
+                            </tr>
+                          <%  }) %>
+                    </tbody>
+                </table>
+              </div>
             
         </main>
     </div>

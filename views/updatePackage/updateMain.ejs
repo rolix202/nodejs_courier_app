@@ -18,6 +18,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="/packages/users">
+                                <i class="fa-solid fa-users"></i>
+                                Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="/packages/add">
                                 <i class="fa-solid fa-user-plus"></i>
                                 Add Package
@@ -37,11 +43,9 @@
                     <ul class="nav flex-column mb-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                <svg class="bi">
-                                    <use xlink:href="#door-closed" />
-                                </svg>
-                                Sign out
+                            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+                              <i class="fa-solid fa-right-from-bracket"></i>
+                                Log out
                             </a>
                         </li>
                     </ul>
@@ -84,57 +88,7 @@
                         <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="receiverFirstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="receiverFirstName"
-                            name="receiverDetails[firstName]" value="<%= packageToUpdate.receiverDetails.firstName || '' %>">
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="receiverLastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="receiverLastName" name="receiverDetails[lastName]" value="<%= packageToUpdate.receiverDetails.lastName || '' %>">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="receiverEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="receiverEmail" name="receiverDetails[email]" value="<%= packageToUpdate.receiverDetails.email || '' %>">
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="receiverPhoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="receiverPhoneNumber"
-                            name="receiverDetails[phoneNumber]" value="<%= packageToUpdate.receiverDetails.phoneNumber || '' %>">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="receiverDestinationAddress" class="form-label">Destination Address</label>
-                        <input type="text" class="form-control" id="receiverDestinationAddress"
-                            name="receiverDetails[destinationAddress]" value="<%= packageToUpdate.receiverDetails.destinationAddress || '' %>">
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="receiverCountry" class="form-label">Country</label>
-                        <input type="text" class="form-control" id="receiverCountry" name="receiverDetails[country]" value="<%= packageToUpdate.receiverDetails.country || '' %>">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" name="receiverDetails[productName]" value="<%= packageToUpdate.receiverDetails.productName || '' %>">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="expectedDeliveryDate" class="form-label">Expected Delivery Date</label>
-                        <input type="date" class="form-control" id="expectedDeliveryDate"
-                            name="receiverDetails[expectedDeliveryDate]" value="<%= packageToUpdate.receiverDetails.expectedDeliveryDate ? packageToUpdate.receiverDetails.expectedDeliveryDate.toISOString().split('T')[0] : 'YYYY-MM-DD' %>">
-                    </div>
-                    
-
-                    <div class="col-md-6">
-                        <label for="productDetails" class="form-label">Product Details</label>
-                        <textarea class="form-control" id="productDetails" name="receiverDetails[productDetails]" 
-                            rows="3"><%= packageToUpdate.receiverDetails.productDetails || ' ' %></textarea>
-                    </div>
-
+                   
                     <div class="col-md-4 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary">Update Transit Status</button>
                     </div>
