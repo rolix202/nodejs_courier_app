@@ -44,7 +44,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="/logout">
-                              <i class="fa-solid fa-right-from-bracket"></i>
+                                <i class="fa-solid fa-right-from-bracket"></i>
                                 Log out
                             </a>
                         </li>
@@ -59,7 +59,7 @@
                 <h1 class="h2">Update Transit Package</h1>
             </div>
 
-            <form action="/packages/update/<%= trackingNumber %>" method="POST">
+            <form action="/packages/update/<%= trackingNumber %>" method="POST" id="update_transit">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label for="transitStatus" class="form-label">Transit Status:</label>
@@ -80,15 +80,15 @@
                     <div class="col-md-6">
                         <label for="location" class="form-label">Location:</label>
                         <input type="text" class="form-control" id="location" name="location"
-                            placeholder="Enter location" >
+                            placeholder="Enter location" required>
                     </div>
 
                     <div class="col-md-12">
                         <label for="comment" class="form-label">Message: </label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
                     </div>
 
-                   
+
                     <div class="col-md-4 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary">Update Transit Status</button>
                     </div>
@@ -99,3 +99,65 @@
         </main>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const trackingNumber = '<%= trackingNumber %>'
+    // console.log(trackingNumber);
+    function showSuccessAlert() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Status Updated Successfully',
+            showConfirmButton: false,
+            timer: 1500,
+        }).then(() => {
+            document.getElementById('update_transit').reset()
+        })
+    }
+
+    function showErrorAlert() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to Update Status',
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('update_transit');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = {
+                transitInfo: {
+                    status: document.getElementById('transitStatus').value,
+                },
+                location: document.getElementById('location').value,
+                comment: document.getElementById('comment').value,
+            };
+
+            fetch(`/packages/update/${trackingNumber}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if(response.ok){
+                    showSuccessAlert();
+                }
+                else{
+                    showErrorAlert()
+                }
+            })
+            .catch(error => {
+                console.error('Error', error);
+                showErrorAlert()
+            })
+
+        })
+    })
+</script>

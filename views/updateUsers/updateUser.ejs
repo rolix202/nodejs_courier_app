@@ -44,7 +44,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="/logout">
-                              <i class="fa-solid fa-right-from-bracket"></i>
+                                <i class="fa-solid fa-right-from-bracket"></i>
                                 Log out
                             </a>
                         </li>
@@ -59,95 +59,105 @@
                 <h1 class="h2">Update User Info</h1>
             </div>
 
-            <form action="/packages/update-user/<%= userInfo.trackingNumber %>" method="POST">
+            <form action="/packages/update-user/<%= userInfo.trackingNumber %>" method="POST" id="user_info">
                 <div class="row g-3">
                     <h4 class="bg-primary rounded-4 p-3 text-white">Sender Details</h4>
                     <div class="col-md-3">
                         <label for="senderFirstName" class="form-label fw-bold">First Name</label>
-                        <input type="text" class="form-control" id="senderFirstName"
-                            name="senderDetails[firstName]" value="<%= userInfo.senderDetails.firstName || '' %>">
+                        <input type="text" class="form-control" id="senderFirstName" name="senderDetails[firstName]"
+                            value="<%= userInfo.senderDetails.firstName || '' %>" required>
                     </div>
 
-                   
+
                     <div class="col-md-3">
                         <label for="senderLastName" class="form-label fw-bold">Last Name</label>
-                        <input type="text" class="form-control" id="senderLastName" name="senderDetails[lastName]" value="<%= userInfo.senderDetails.lastName || '' %>">
+                        <input type="text" class="form-control" id="senderLastName" name="senderDetails[lastName]"
+                            value="<%= userInfo.senderDetails.lastName || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="senderEmail" class="form-label fw-bold">Email</label>
-                        <input type="email" class="form-control" id="senderEmail" name="senderDetails[email]" value="<%= userInfo.senderDetails.email || '' %>">
+                        <input type="email" class="form-control" id="senderEmail" name="senderDetails[email]"
+                            value="<%= userInfo.senderDetails.email || '' %>" required>
                     </div>
 
                     <div class="col-md-3">
                         <label for="senderPhoneNumber" class="form-label fw-bold">Phone Number</label>
-                        <input type="text" class="form-control" id="senderPhoneNumber"
-                            name="senderDetails[phoneNumber]" value="<%= userInfo.senderDetails.phoneNumber || '' %>">
+                        <input type="text" class="form-control" id="senderPhoneNumber" name="senderDetails[phoneNumber]"
+                            value="<%= userInfo.senderDetails.phoneNumber || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="senderAddress" class="form-label fw-bold">Address</label>
-                        <input type="text" class="form-control" id="senderAddress"
-                            name="senderDetails[address]" value="<%= userInfo.senderDetails.address || '' %>">
+                        <input type="text" class="form-control" id="senderAddress" name="senderDetails[address]"
+                            value="<%= userInfo.senderDetails.address || '' %>" required>
                     </div>
 
                     <div class="col-md-3">
                         <label for="senderCountry" class="form-label fw-bold">Country</label>
-                        <input type="text" class="form-control" id="senderCountry" name="senderDetails[country]" value="<%= userInfo.senderDetails.country || '' %>">
+                        <input type="text" class="form-control" id="senderCountry" name="senderDetails[country]"
+                            value="<%= userInfo.senderDetails.country || '' %>" required>
                     </div>
-                    
+
 
                     <!-- //////////////////////////////// -->
                     <h4 class="bg-primary rounded-4 p-3 mt-4 text-white">Receiver Details</h4>
                     <div class="col-md-3">
                         <label for="receiverFirstName" class="form-label fw-bold">First Name</label>
-                        <input type="text" class="form-control" id="receiverFirstName"
-                            name="receiverDetails[firstName]" value="<%= userInfo.receiverDetails.firstName || '' %>">
+                        <input type="text" class="form-control" id="receiverFirstName" name="receiverDetails[firstName]"
+                            value="<%= userInfo.receiverDetails.firstName || '' %>" required>
                     </div>
 
                     <div class="col-md-3">
                         <label for="receiverLastName" class="form-label fw-bold">Last Name</label>
-                        <input type="text" class="form-control" id="receiverLastName" name="receiverDetails[lastName]" value="<%= userInfo.receiverDetails.lastName || '' %>">
+                        <input type="text" class="form-control" id="receiverLastName" name="receiverDetails[lastName]"
+                            value="<%= userInfo.receiverDetails.lastName || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="receiverEmail" class="form-label fw-bold">Email</label>
-                        <input type="email" class="form-control" id="receiverEmail" name="receiverDetails[email]" value="<%= userInfo.receiverDetails.email || '' %>">
+                        <input type="email" class="form-control" id="receiverEmail" name="receiverDetails[email]"
+                            value="<%= userInfo.receiverDetails.email || '' %>" required>
                     </div>
 
                     <div class="col-md-3">
                         <label for="receiverPhoneNumber" class="form-label fw-bold">Phone Number</label>
                         <input type="text" class="form-control" id="receiverPhoneNumber"
-                            name="receiverDetails[phoneNumber]" value="<%= userInfo.receiverDetails.phoneNumber || '' %>">
+                            name="receiverDetails[phoneNumber]"
+                            value="<%= userInfo.receiverDetails.phoneNumber || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="receiverDestinationAddress" class="form-label fw-bold">Destination Address</label>
                         <input type="text" class="form-control" id="receiverDestinationAddress"
-                            name="receiverDetails[destinationAddress]" value="<%= userInfo.receiverDetails.destinationAddress || '' %>">
+                            name="receiverDetails[destinationAddress]"
+                            value="<%= userInfo.receiverDetails.destinationAddress || '' %>" required>
                     </div>
 
                     <div class="col-md-3">
                         <label for="receiverCountry" class="form-label fw-bold">Country</label>
-                        <input type="text" class="form-control" id="receiverCountry" name="receiverDetails[country]" value="<%= userInfo.receiverDetails.country || '' %>">
+                        <input type="text" class="form-control" id="receiverCountry" name="receiverDetails[country]"
+                            value="<%= userInfo.receiverDetails.country || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="productName" class="form-label fw-bold">Product Name</label>
-                        <input type="text" class="form-control" id="productName" name="receiverDetails[productName]" value="<%= userInfo.receiverDetails.productName || '' %>">
+                        <input type="text" class="form-control" id="productName" name="receiverDetails[productName]"
+                            value="<%= userInfo.receiverDetails.productName || '' %>" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="expectedDeliveryDate" class="form-label fw-bold">Expected Delivery Date</label>
                         <input type="date" class="form-control" id="expectedDeliveryDate"
-                            name="receiverDetails[expectedDeliveryDate]" value="<%= userInfo.receiverDetails.expectedDeliveryDate ? userInfo.receiverDetails.expectedDeliveryDate.toISOString().split('T')[0] : 'YYYY-MM-DD' %>">
+                            name="receiverDetails[expectedDeliveryDate]"
+                            value="<%= userInfo.receiverDetails.expectedDeliveryDate ? userInfo.receiverDetails.expectedDeliveryDate.toISOString().split('T')[0] : 'YYYY-MM-DD' %>" required>
                     </div>
-                    
+
 
                     <div class="col-md-6">
                         <label for="productDetails" class="form-label fw-bold">Product Details</label>
-                        <textarea class="form-control" id="productDetails" name="receiverDetails[productDetails]" 
-                            rows="3"><%= userInfo.receiverDetails.productDetails || ' ' %></textarea>
+                        <textarea class="form-control" id="productDetails" name="receiverDetails[productDetails]"
+                            rows="3" required><%= userInfo.receiverDetails.productDetails || ' ' %></textarea>
                     </div>
 
                     <div class="col-md-4 d-flex align-items-end">
@@ -160,3 +170,84 @@
         </main>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function showSuccessAlert() {
+        Swal.fire({
+            icon: 'success',
+            title: 'User Updated Successfully',
+            showConfirmButton: false,
+            timer: 1500,
+        }).then(() => {
+            document.getElementById('user_info').reset();
+        });
+    }
+
+    function showErrorAlert() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to Update User Info',
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('user_info');
+
+        form.addEventListener('submit', function (ever) {
+            event.preventDefault();
+
+
+            const formData = {
+                receiverDetails: {
+                    firstName: document.getElementById('receiverFirstName').value,
+                    lastName: document.getElementById('receiverLastName').value,
+                    email: document.getElementById('receiverEmail').value,
+                    phoneNumber: document.getElementById('receiverPhoneNumber').value,
+                    country: document.getElementById('receiverCountry').value,
+                    destinationAddress: document.getElementById('receiverDestinationAddress').value,
+                    productName: document.getElementById('productName').value,
+                    productDetails: document.getElementById('productDetails').value,
+                    expectedDeliveryDate: document.getElementById('expectedDeliveryDate').value,
+                },
+                senderDetails: {
+                    firstName: document.getElementById('senderFirstName').value,
+                    lastName: document.getElementById('senderLastName').value,
+                    email: document.getElementById('senderEmail').value,
+                    phoneNumber: document.getElementById('senderPhoneNumber').value,
+                    country: document.getElementById('senderCountry').value,
+                    address: document.getElementById('senderAddress').value,
+                },
+
+            };
+
+            const trackingNumber = '<%= userInfo.trackingNumber %>';
+
+            fetch(`/packages/update-user/${trackingNumber}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        showSuccessAlert();
+                    } else {
+                        showErrorAlert();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showErrorAlert();
+                });
+
+        });
+
+
+
+    })
+
+</script>
