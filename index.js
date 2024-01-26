@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     res.render('homepage/index.ejs', {msg : ''})
   });
 app.get('/contact-us', (req, res) => {
-    res.render('contact/contactH.ejs', {msg: 'rola', error: ''})
+    res.render('contact/contactH.ejs', {msg: '', error: ''})
 })
 // app.get('/track', (req, res) => {
 //     res.render('track/main.ejs')

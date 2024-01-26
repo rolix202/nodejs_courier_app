@@ -30,8 +30,8 @@ const sendEmail = async (contactName, phoneNumber, email, message) => {
   
     try {
       const info = await transporter.sendMail({
-        from: '"Roland 👻" <admin@crossborderlogisticsinc.com>',
-        to: 'admin@crossborderlogisticsinc.com',
+        from: '"Info " <info@crossborderlogisticsinc.com>',
+        to: 'enquiry@crossborderlogisticsinc.com',
         subject: 'Crossborder Logistcis Inc Enquiry Message',
         html: output,
       });
