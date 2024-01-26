@@ -49,14 +49,14 @@ const sendEmail = async (contactName, phoneNumber, email, message) => {
   
       // Basic form validation
       if (!contactName || !phoneNumber || !email || !message) {
-        return res.status(400).json({ error: 'All fields are required.' });
+        return res.render('contact/contactH.ejs', { error: 'All fields are required.' });
       }
   
       const messageId = await sendEmail(contactName, phoneNumber, email, message);
-      res.status(200).json({ msg: 'Message sent', messageId });
+        res.render('contact/contactH.ejs',{ msg: 'Message sent successfully!'});
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Failed to submit the form. Please try again.' });
+      res.render('contact/contactH.ejs', { error: 'Failed to submit the form. Please try again.' });
     }
   });
 export default router;
