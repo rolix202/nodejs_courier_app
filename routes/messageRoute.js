@@ -30,9 +30,9 @@ const sendEmail = async (contactName, phoneNumber, email, message) => {
   
     try {
       const info = await transporter.sendMail({
-        from: '"Info " <info@crossborderlogisticsinc.com>',
-        to: 'enquiry@crossborderlogisticsinc.com',
-        subject: 'Crossborder Logistcis Inc Enquiry Message',
+        from: '"Info" <admin@crossborderlogisticsinc.com>',
+        to: 'admin@crossborderlogisticsinc.com',
+        subject: 'Contact Form Mesaage - Crossborder Logistcis Inc',
         html: output,
       });
   
@@ -53,7 +53,7 @@ const sendEmail = async (contactName, phoneNumber, email, message) => {
       }
   
       const messageId = await sendEmail(contactName, phoneNumber, email, message);
-        res.render('contact/contactH.ejs',{ msg: 'Message sent successfully!'});
+        res.render('contact/contactH.ejs', { msg: 'Message sent successfully!'});
     } catch (error) {
       console.error(error);
       res.render('contact/contactH.ejs', { error: 'Failed to submit the form. Please try again.' });

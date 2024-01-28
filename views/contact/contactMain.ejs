@@ -1,17 +1,9 @@
-<!-- <div id="loader-container">
-    <img src="/images/loading2.gif" alt="alt" id="loader" >
-</div> -->
-
 <div class="contact_wrapper">
-    <div class="header_container">
-        <%- include('menu.ejs') %>
-
-    </div>
+    <div class="header_container"><%- include('menu.ejs') %></div>
     <div class="contact_header">
-
         <div class="header_text text-white text-center">
             <h1 class="text-capitalize fw-bold">contact us</h1>
-            <hr class="header_hr">
+            <hr class="header_hr" />
         </div>
 
         <div class="header_text_icons">
@@ -31,86 +23,101 @@
                     <h1>Crossborder Logistics Inc</h1>
                     <!-- <h4 style="color: orange;">Bağlar, Mimar Sinan Cd No:46, 34209 Bağcılar/İstanbul, Türkiye 🇹🇷</h4> -->
                     <span><b>Enquiries:</b> enquiry@crossborderlogisticsinc.com</span>
-
                 </div>
-                <div class="col-md-6 contact_detai">
+                <div class="col-md-6 contact_detail">
                     <form action="/submitMessage" method="post" class="row g-3" id="message_form">
-                        <% if (msg) { %>
-                            <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3"
-                                role="alert">
-                                <%= msg %>
-                            </div>
-                            <% } else if (error) { %>
-                                <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3"
-                                    role="alert">
-                                    <%= error %>
-                                </div>
-                             <%   } %>
+                        <% if (typeof msg !=='undefined' ) { %>
+                            <% if (msg == ''){ %>
+                                <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3 d-none"
+                                    role="alert"></div>
+                                <% } else { %>
+                                    <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3"
+                                        role="alert">
+                                        <%= msg %>
+                                    </div>
+                                    <% } %>
+                        <% } else if (typeof error !== 'undefined') { %>
+                                <% if (error == ''){ %>
+                                    <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3 d-none"
+                                        role="alert"></div>
 
+                                    <%} else { %>
+                                                <div class="alert alert-danger animate__animated animate__shakeX text-center fs-3"
+                                                role="alert">
+                                                <%= error %>
+                                            </div>
+                                            <% } %>
+                                            <% } %>
+                                                <div class="alert alert-danger animate__animated animate__shakeX text-center d-none"
+                                                    role="alert"></div>
 
-                                <div class="alert alert-danger animate__animated animate__shakeX text-center d-none"
-                                    role="alert">
+                                                <div class="col-md-6">
+                                                    <label for="contactName" class="form-label">Contact Name:</label>
+                                                    <input type="text" class="form-control" id="contactName"
+                                                        name="contactName" required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="phoneNumber" class="form-label">Phone Number:</label>
+                                                    <input type="text" class="form-control" id="phoneNumber"
+                                                        name="phoneNumber" required />
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="email" class="form-label">Email:</label>
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                        required />
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label for="message" class="form-label">Message:</label>
+                                                    <textarea class="form-control" id="message" rows="3" name="message"
+                                                        required></textarea>
+                                                </div>
 
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="contactName" class="form-label">Contact Name:</label>
-                                    <input type="text" class="form-control" id="contactName" name="contactName"
-                                        required />
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phoneNumber" class="form-label">Phone Number:</label>
-                                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                                        required>
-                                </div>
-                                <div class="col-12">
-                                    <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="message" class="form-label">Message:</label>
-                                    <textarea class="form-control" id="message" rows="3" name="message"
-                                        required></textarea>
-                                </div>
-
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary submit_btn w-25">Send</button>
-                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary submit_btn w-25">
+                                                        Send
+                                                    </button>
+                                                </div>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="footer">
         <div class="row p-5">
             <div class="col-md-4 d-flex align-items-center px-5">
-                <img src="/images/log2.png" alt="logo" width="250px" height="auto">
+                <img src="/images/log2.png" alt="logo" width="250px" height="auto" />
             </div>
             <div class="col-md-4 footer_middle">
                 <div class="contact_footer text-white">
                     <h1 class="text-uppercase">Contact Us</h1>
-                    <h4 class="text-capitalize">Have a question? We'd love to hear from you.</h4>
-                    <span><i class="fa-solid fa-address-book pe-"></i> Bağlar, Mimar Sinan Cd No:46, 34209
-                        Bağcılar/İstanbul, Türkiye 🇹🇷</span>
-                    <span><i class="fa-solid fa-envelope pe-1"></i> info@crossborderlogisticsinc.com </span>
+                    <h4 class="text-capitalize">
+                        Have a question? We'd love to hear from you.
+                    </h4>
+                    <span><i class="fa-solid fa-address-book pe-"></i> Bağlar, Mimar Sinan Cd
+                        No:46, 34209 Bağcılar/İstanbul, Türkiye 🇹🇷</span>
+                    <span><i class="fa-solid fa-envelope pe-1"></i>
+                        info@crossborderlogisticsinc.com
+                    </span>
                 </div>
             </div>
             <div class="col-md-4 d-flex justify-content-center footer_last">
                 <div class="contact_footer text-white">
                     <h1 class="text-uppercase">Services</h1>
                     <span><i class="fa-solid fa-ship pe-1"></i> Ocean Freight Services</span>
-                    <span><i class="fa-solid fa-plane-departure pe-1"></i> Air Freight & Courier Services</span>
-                    <span><i class="fa-solid fa-truck-fast pe-1"></i> Road Freight Services</span>
+                    <span><i class="fa-solid fa-plane-departure pe-1"></i> Air Freight &
+                        Courier Services</span>
+                    <span><i class="fa-solid fa-truck-fast pe-1"></i> Road Freight
+                        Services</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="copyright text-white text-center">
-        <p>All rights reserved. copyright &copy; 1999. Cross Border Logistics Inc</p>
+        <p>
+            All rights reserved. copyright &copy; 1999. Cross Border Logistics Inc
+        </p>
     </div>
-
 </div>
 
 <!-- Add this script at the end of your HTML body -->
